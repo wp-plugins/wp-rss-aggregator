@@ -11,7 +11,9 @@ Imports and merges multiple RSS Feeds using SimplePie. Outputs feeds sorted by d
 
 WP RSS Aggregator helps you create a feed reader on your WordPress site. It works in a similar fashion to RSS readers like for example Netvibes.
 You can add any number of feeds through an administration panel, the plugin will then pull all the feeds from these sites, merge them and sort them by date.
+
 The output will be organised like this:
+
 * Today
 * Yesterday
 * 2 Days ago
