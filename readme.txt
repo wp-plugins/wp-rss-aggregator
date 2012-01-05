@@ -21,8 +21,7 @@ The plugin uses SimplePie for the feed operations. The actual news feeds are not
 You can call the function from within the theme or even use a shortcode with parameters.
 
 = Demo =
-The plugin can be seen in use on WPMayor.com
-http://www.wpmayor.com/wordpress-news/
+The plugin can be seen in use on the [WPMayor.com WordPress News page](http://www.wpmayor.com/wordpress-news/)
 
 == Installation ==
 
@@ -32,6 +31,7 @@ http://www.wpmayor.com/wordpress-news/
 3. Use the shortcode in your posts or pages: `[wp_rss_aggregator]`
 
 The paramters accepted are:
+
 * date_before 
 * date_after 
 * links_befor
