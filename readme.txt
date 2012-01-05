@@ -1,7 +1,7 @@
 === WP RSS Aggregator ===
 Contributors: jeangalea
 Donate link: http://www.jeangalea.com
-Tags: rss, feeds
+Tags: rss, feeds, aggregation, aggregator, import
 Requires at least: 3.0
 Tested up to: 3.3.1
 Stable tag: 1.0
@@ -20,20 +20,24 @@ The output will be organised like this:
 The plugin uses SimplePie for the feed operations. The actual news feeds are not stored in your databases but only cached for faster response times.
 You can call the function from within the theme or even use a shortcode with parameters.
 
+= Demo =
+The plugin can be seen in use on WPMayor.com
+http://www.wpmayor.com/wordpress-news/
+
 == Installation ==
 
 1. Upload the `wp-rss-aggregator` folder to the `/wp-content/plugins/` directory
 2. Activate the WP RSS Aggregator plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin by going to the `RSS Aggregator` submenu that appears in your `Settings` admin menu.
-3. Use the shortcode in your posts or pages: [wp_rss_aggregator]
+3. Use the shortcode in your posts or pages: `[wp_rss_aggregator]`
 
 The paramters accepted are:
-* 'date_before' 
-* 'date_after' 
-* 'links_before'
-* 'links_after' 
-* 'link_before' 
-* 'link_after'
+* date_before 
+* date_after 
+* links_befor
+* links_after
+* link_before
+* link_after
 
 An example of a shortcode with parameters:
 `[wp_rss_aggregator date_before='<h2>' date_after='</h2>']`
@@ -62,7 +66,9 @@ Or use the shortcode in your posts and pages:
 [wp-rss-aggregator]
 
 == Screenshots ==
+
 1. The output of this plugin on the frontend, as seen on www.wpmayor.com.
+
 2. Admin administration panel.
 
 == Changelog ==
@@ -70,6 +76,3 @@ Or use the shortcode in your posts and pages:
 = Version 1.0 =
 * Initial release.
 
-== Demo ==
-The plugin can be seen in use on WPMayor.com
-http://www.wpmayor.com/wordpress-news/
