@@ -300,7 +300,7 @@
             foreach ( $items_today as $item ) {
                 
                 echo $link_before . '<a class="colorbox" href="' . $item->get_permalink() .'">'. $item->get_title(). ' '. '</a>'; 
-                echo '<br><span>Source: '.$item->get_feed()->get_title()/* . ' | ' . $item->get_date('l jS F').''*/ . '</span>';
+                echo '<br><span class="feed-source">Source: '.$item->get_feed()->get_title()/* . ' | ' . $item->get_date('l jS F').''*/ . '</span>';
                 echo $link_after;
                 
             }
@@ -312,7 +312,7 @@
             echo $links_before;
             foreach ( $items_yesterday as $item ) {
                 echo '<li><a class="colorbox" href="' . $item->get_permalink() .'">'. $item->get_title(). ' '. '</a>'; 
-                echo '<br><span>Source: '.$item->get_feed()->get_title()/* . ' | ' . $item->get_date('l jS F').''*/ . '</span>';
+                echo '<br><span class="feed-source">Source: '.$item->get_feed()->get_title()/* . ' | ' . $item->get_date('l jS F').''*/ . '</span>';
                 echo $link_after;
             }
             echo $links_after;
@@ -323,7 +323,7 @@
             echo $links_before;
             foreach ( $items_two_days_ago as $item ) {
                 echo '<li><a class="colorbox" href="' . $item->get_permalink() .'">'. $item->get_title(). ' '. '</a>'; 
-                echo '<br><span>Source: '.$item->get_feed()->get_title()/* . ' | ' . $item->get_date('l jS F').''*/ . '</span>';
+                echo '<br><span class="feed-source">Source: '.$item->get_feed()->get_title()/* . ' | ' . $item->get_date('l jS F').''*/ . '</span>';
                 echo $link_after;
             }
             echo $links_after;
@@ -333,7 +333,7 @@
             echo $links_before;
             foreach ( $items_older as $item ) {
                 echo '<li><a class="colorbox" href="' . $item->get_permalink() .'">'. $item->get_title(). ' '. '</a>'; 
-                echo '<br><span>Source: '.$item->get_feed()->get_title() . ' | ' . $item->get_date('l jS F').'</span>';
+                echo '<br><span class="feed-source">Source: '.$item->get_feed()->get_title() . ' | ' . $item->get_date('l jS F').'</span>';
                 echo $link_after;
             }           
             echo $links_after;
