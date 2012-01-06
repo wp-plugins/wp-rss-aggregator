@@ -264,12 +264,12 @@
         
         if ( !empty( $feed_uris ) ) {           
             // update feeds every hour else serve from cache
-            function hourly_feed() { return 3600; }
-            add_filter( 'wp_feed_cache_transient_lifetime', 'hourly_feed' );
+            function wprss_hourly_feed() { return 3600; }
+            add_filter( 'wp_feed_cache_transient_lifetime', 'wprss_hourly_feed' );
             $feed = fetch_feed( $feed_uris );    
         }
         else echo 'No feed defined';
-        remove_filter( 'wp_feed_cache_transient_lifetime', 'hourly_feed' );
+        remove_filter( 'wp_feed_cache_transient_lifetime', 'wprss_hourly_feed' );
         
         $items = $feed->get_items();        
         $items_today = array();
