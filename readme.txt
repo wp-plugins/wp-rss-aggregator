@@ -2,7 +2,7 @@
 Contributors: jeangalea
 Donate link: http://www.jeangalea.com
 Tags: rss, feeds, aggregation, aggregator, import
-Requires at least: 3.0
+Requires at least: 2.9
 Tested up to: 3.3.1
 Stable tag: 1.0
 Imports and merges multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).

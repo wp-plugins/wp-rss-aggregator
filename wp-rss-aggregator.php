@@ -32,9 +32,9 @@
     
     function wprss_install() {
         // Activates the plugin and checks for compatible version of WordPress 
-        if ( version_compare( get_bloginfo( 'version' ), '3.1', '<' ) ) {
+        if ( version_compare( get_bloginfo( 'version' ), '2.9', '<' ) ) {
             deactivate_plugins ( basename( __FILE__ ));     // Deactivate plugin
-            wp_die( "This plugin requires WordPress version 3.1 or higher." );
+            wp_die( "This plugin requires WordPress version 2.9 or higher." );
         }
           
         if ( !wp_next_scheduled( 'wprss_generate_hook' ) ) {            
