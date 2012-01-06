@@ -250,9 +250,7 @@
         // Parse incoming $args into an array and merge it with $defaults        	
 	$args = wp_parse_args( $args, $defaults );
         // Declare each item in $args as its own variable
-        extract( $args, EXTR_SKIP );
-        
-        //update_option ( 'wprss_feeds', $wprss_feeds );
+        extract( $args, EXTR_SKIP );        
         
         $wprss_options = get_option( 'wprss_options', 'option not found' );   
     
