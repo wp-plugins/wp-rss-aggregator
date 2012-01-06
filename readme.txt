@@ -32,7 +32,7 @@ The plugin can be seen in use on the [WPMayor.com WordPress News page](http://ww
 3. Configure the plugin by going to the `RSS Aggregator` submenu that appears in your `Settings` admin menu.
 3. Use the shortcode in your posts or pages: `[wp_rss_aggregator]`
 
-The paramters accepted are:
+The parameters accepted are:
 
 * date_before 
 * date_after 
