@@ -66,7 +66,7 @@
     // Only load scripts and CSS if we are on this plugin's options page (admin)
     if ( isset( $_GET['page'] ) && $_GET['page'] == 'wprss_aggregator' ) {
         add_action( 'admin_print_scripts', 'wprss_register_scripts' );
-        add_action( 'admin_head', 'wprss_header' );
+        add_action( 'admin_print_styles', 'wprss_header' );
     }    
   
 
