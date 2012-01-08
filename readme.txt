@@ -25,6 +25,9 @@ You can call the function from within the theme or even use a shortcode with par
 = Demo =
 The plugin can be seen in use on the [WPMayor.com WordPress News page](http://www.wpmayor.com/wordpress-news/)
 
+= Credit = 
+Created by Jean Galea. Need a [Web Developer](http://www.jeangalea.com/services/wordpress-consultancy-development/)?
+
 == Installation ==
 
 1. Upload the `wp-rss-aggregator` folder to the `/wp-content/plugins/` directory
