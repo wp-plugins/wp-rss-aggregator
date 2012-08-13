@@ -72,7 +72,7 @@ You can either call the function directly within the theme:
 `<?php wp_rss_aggregator(); ?>`
 
 Or use the shortcode in your posts and pages:
-[wp-rss-aggregator]
+[wp_rss_aggregator]
 
 == Screenshots ==
 
