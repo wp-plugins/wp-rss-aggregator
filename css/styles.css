@@ -21,3 +21,8 @@
     width: 400px;
 }
 
+#icon-wprss-aggregator {
+    background: transparent url( '../img/icon-adminpage32.png' ) no-repeat !important;
+}
+
+/*.rss-aggregator_page_wprss-aggregator-settings .form-table th { width: 80px; }*/
