@@ -1,27 +1,56 @@
 <?php  
     /**
-     * Plugin administration page
+     * Plugin administration related functions 
      * 
      * Note: Wording of options and settings is confusing, due to the plugin originally only having 
      * an 'options' page to enter feed sources, and now needing two screens, one for feed sources and one for 
      * general settings. Might implement something cleaner in the future.
+     *
+     * @package WPRSSAggregator
      */ 
     
-    // Add the admin options and settings pages
 
-    add_action( 'admin_menu', 'wprss_add_page' );
+    /**
+     * Custom Post Type Icon for Admin Menu & Post Screen
+     * @since  2.0
+     */
+    add_action( 'admin_head', 'wprss_custom_post_type_icon' );
+
+    function wprss_custom_post_type_icon() {
+        ?>
+        <style>
+            /* Post Screen - 32px */
+            .icon32-posts-wprss_feed {
+                background: transparent url( <?php echo WPRSS_IMG . 'icon-adminpage32.png'; ?> ) no-repeat left top !important;
+            } 
+            /* Post Screen - 32px */
+            .icon32-posts-wprss_feed_item {
+                background: transparent url( <?php echo WPRSS_IMG . 'icon-adminpage32.png'; ?> ) no-repeat left top !important;
+            }   
+        </style>
+    <?php } 
+     
+
+    /**
+     * Register menu and submenus
+     * @since 2.0
+     */ 
     
-    function wprss_add_page() {        
-        add_menu_page( 'RSS Aggregator', 'RSS Aggregator', 'manage_options', 'wprss-aggregator', 
-                       'wprss_options_page', WPRSS_IMG . '/icon-adminmenu16-sprite.png' );
+    // Add the admin options pages as submenus to the Feed CPT   
+    add_action( 'admin_menu', 'wprss_register_menu_pages' );
+    
+    function wprss_register_menu_pages() {        
+          
+        //create submenu items        
+        add_submenu_page( 'edit.php?post_type=wprss_feed', 'WP RSS Aggregator Settings', 'Settings', 'manage_options', 'wprss-aggregator-settings', 'wprss_settings_page' );             
+    }
 
-        add_submenu_page( 'wprss-aggregator', 'WP RSS Aggregator Settings', 'Settings', 'manage_options', 
-                          'wprss-aggregator-settings', 'wprss_settings_page' );        
-    }    
 
 
     /**
      * Register and define options and settings
+     * @since  2.0
+     * @todo  add option for cron frequency
      */ 
     
     add_action( 'admin_init', 'wprss_admin_init' );
@@ -39,89 +68,18 @@
                             'wprss_setting_open_dd', 'wprss-aggregator-settings', 'wprss-settings-main');
 
         add_settings_field( 'wprss-settings-follow-dd', 'Set links as', 
-                            'wprss_setting_follow_dd', 'wprss-aggregator-settings', 'wprss-settings-main');        
+                            'wprss_setting_follow_dd', 'wprss-aggregator-settings', 'wprss-settings-main');     
+
+        add_settings_field( 'wprss-settings-feed-limit', 'Feed limit', 
+                            'wprss_setting_feed_limit', 'wprss-aggregator-settings', 'wprss-settings-main');  
+
     }  
-
-    
-    /**
-     * Draw options page, used for adding feeds 
-     */ 
-    
-    function wprss_options_page() {
-        ?>
-        <div class="wrap">
-            <?php screen_icon( 'wprss-aggregator' ); ?>
-        
-         
-            <h2>WP RSS Aggregator Feed Sources</h2>
-            <div id="options">
-                <form action="options.php" method="post">            
-                    <?php
-                    
-                    settings_fields( 'wprss_options' );
-                    do_settings_sections( 'wprss' );
-                    $options = get_option( 'wprss_options' );        
-                    if ( !empty($options) ) {
-                        $size = count($options);
-                        for ( $i = 1; $i <= $size; $i++ ) {            
-                            if( $i % 2 == 0 ) continue;
-                            echo "<div class='wprss-input'>";
-                            
-                            $key = key( $options );
-                            
-                            echo "<p><label class='textinput' for='$key'>" . wprss_convert_key( $key ) . "</label>
-                            <input id='$key' class='wprss-input' size='100' name='wprss_options[$key]' type='text' value='$options[$key]' /></p>";
-                            
-                            next( $options );
-                            
-                            $key = key( $options );
-                            
-                            echo "<p><label class='textinput' for='$key'>" . wprss_convert_key( $key ) . "</label>
-                            <input id='$key' class='wprss-input' size='100' name='wprss_options[$key]' type='text' value='$options[$key]' /></p>";
-                            
-                            next( $options );
-                            echo "</div>"; 
-                            
-                        }
-                    }
-                                        
-                    ?>
-                    <div id="buttons"><a href="#" id="add"><img src="<?php echo WPRSS_IMG; ?>/add.png"></a>  
-                    <a href="#" id="remove"><img src="<?php echo WPRSS_IMG; ?>/remove.png"></a></div>  
-                    <p class="submit"><input type="submit" value="Save Settings" name="submit" class="button-primary"></p>
-                
-                </form>
-            </div> <!-- end options -->
-        </div> <!-- end wrap -->
-        <?php 
-    }
-    
-    
-  
-
-
-    /**
-     * Explain the options section
-     */ 
-    
-    function wprss_section_text() {
-        echo '<p>Enter a name and URL for each of your feeds. The name is used just for your reference.</p>';
-    }
-
-
-
-
-
-
-
-
-
 
 
     /**
      * Build the plugin settings page, used to save general settings like whether a link should be follow or no follow
+     * @since 1.1
      */ 
-
     function wprss_settings_page() {
         ?>
         <div class="wrap">
@@ -144,7 +102,11 @@
    //     echo '<p>Enter your settings here.</p>';
     }
 
-    // Follow or No Follow Dropdown
+
+    /** 
+     * Follow or No Follow dropdown
+     * @since 1.1
+     */
     function wprss_setting_follow_dd() {
         $options = get_option( 'wprss_settings' );
         $items = array( "No follow", "Follow" );
@@ -156,7 +118,11 @@
         echo "</select>";
     }
 
-    // Link open setting Dropdown
+
+    /** 
+     * Link open setting dropdown
+     * @since 1.1
+     */
     function wprss_setting_open_dd() {
         $options = get_option( 'wprss_settings' );
         $items = array( "Lightbox", "New window", "None" );
@@ -169,4 +135,53 @@
     }
 
 
-?>
+    /** 
+     * Set limit for feeds on frontend
+     * @since 2.0
+     */
+    function wprss_setting_feed_limit() {
+        $options = get_option( 'wprss_settings' );                    
+        // echo the field
+       
+        echo "<input id='feed-limit' name='wprss_settings[feed_limit]' type='text' value='$options[feed_limit]' />";   
+    }
+
+
+    /** 
+     * Set body class for admin screens
+     * http://www.kevinleary.net/customizing-wordpress-admin-css-javascript/
+     * @since 2.0
+     */   
+    function wprss_base_admin_body_class( $classes )
+    {
+        // Current action
+        if ( is_admin() && isset($_GET['action']) ) {
+            $classes .= 'action-'.$_GET['action'];
+        }
+        // Current post ID
+        if ( is_admin() && isset($_GET['post']) ) {
+            $classes .= ' ';
+            $classes .= 'post-'.$_GET['post'];
+        }
+        // New post type & listing page
+        if ( isset($_GET['post_type']) ) $post_type = $_GET['post_type'];
+        if ( isset($post_type) ) {
+            $classes .= ' ';
+            $classes .= 'post-type-'.$post_type;
+        }
+        // Editting a post type
+        if ( isset( $_GET['post'] ) ) {
+            $post_query = $_GET['post'];
+        }
+        if ( isset($post_query) ) {
+            $current_post_edit = get_post($post_query);
+            $current_post_type = $current_post_edit->post_type;
+            if ( !empty($current_post_type) ) {
+                $classes .= ' ';
+                $classes .= 'post-type-'.$current_post_type;
+            }
+        }
+        // Return the $classes array
+        return $classes;
+    }
+    add_filter('admin_body_class', 'wprss_base_admin_body_class');
