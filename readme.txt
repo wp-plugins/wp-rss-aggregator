@@ -42,7 +42,14 @@ It is advisable to use the 'HTML' view of the editor when inserting the shortcod
 
 An example of a function call from within the template files:
 `
-<?php wprss_display_feed_items(); ?>
+<?php 
+wprss_display_feed_items(
+'links_before' => '<ul>',
+'links_after' => '</ul>',
+'link_before' => '<li>',
+'link_after' => '</li>'
+); 
+?>
 `
 
 OR 
