@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://wordpress.org/extend/plugins/wp-rss-aggregator/
     Description: Imports and merges multiple RSS Feeds using SimplePie
-    Version: 2.0
+    Version: 2.1
     Author: Jean Galea
     Author URI: http://www.jeangalea.com
     License: GPLv3
@@ -27,7 +27,7 @@
     */
 
     /*
-    @version 2.0
+    @version 2.1
     @author Jean Galea <info@jeangalea.com>
     @copyright Copyright (c) 2012, Jean Galea
     @link http://www.jeangalea.com/
@@ -46,7 +46,7 @@
      */
 
     /* Set the version number of the plugin. */
-    define( 'WPRSS_VERSION', '2.0', true );
+    define( 'WPRSS_VERSION', '2.1', true );
 
     /* Set the database version number of the plugin. */
     define( 'WPRSS_DB_VERSION', 2 );
@@ -96,7 +96,7 @@
     require_once ( WPRSS_INC . 'custom-post-types.php' );         
 
     /* Load the cron job scheduling functions. */
-    require_once ( WPRSS_INC . 'cron-jobs.php' );       
+    require_once ( WPRSS_INC . 'cron-jobs.php' );     
     
     add_action( 'init', 'wprss_schedule_fetch_feeds_cron' );
     add_action( 'init', 'wprss_schedule_truncate_posts_cron' );
@@ -109,9 +109,19 @@
      * @since 2.0     
      */         
     function wprss_init() {                
-
         register_activation_hook( WPRSS_INC . 'activation.php', 'wprss_activate' );
         register_deactivation_hook( WPRSS_INC . 'deactivation.php', 'wprss_deactivate' );
+    } // end wprss_int
+
+
+    add_action( 'plugins_loaded', 'wprss_load_textdomain' );
+    /**
+     * Loads the plugin's translated strings.
+     * 
+     * @since 2.1     
+     */  
+    function wprss_load_textdomain() { 
+        load_plugin_textdomain( 'wprss', false, plugin_basename( __FILE__ ) . '/lang/' );
     }
 
 
@@ -137,7 +147,7 @@
                 add_filter( 'enter_title_here', 'wprss_change_title_text' );
             }
         }      
-    }
+    } // end wprss_admin_scripts_styles
     
 
     /**
@@ -146,8 +156,8 @@
      * @since 2.0
      */  
     function wprss_change_title_text() {
-        return "Enter feed name here (e.g. WP Mayor)";
-    }
+        return __( 'Enter feed name here (e.g. WP Mayor)', 'wprss' );
+    } // end wprss_change_title_text
 
 
     add_action( 'wp_head', 'wprss_head_scripts_styles' );
@@ -160,6 +170,17 @@
         wp_enqueue_style( 'colorbox', WPRSS_CSS . 'colorbox.css' );       
         wp_enqueue_script( 'jquery.colorbox-min', WPRSS_JS .'jquery.colorbox-min.js', array('jquery') );         
         wp_enqueue_script( 'custom', WPRSS_JS .'custom.js', array('jquery','jquery.colorbox-min') );           
+    } // end wprss_head_scripts_styles
+
+
+    /**
+     * Change the default feed cache recreation period to 2 hours
+     * 
+     * @since 2.1
+     */ 
+    function wprss_return_7200( $seconds )
+    {      
+      return 7200;
     }
       
 
@@ -188,7 +209,9 @@
                     
                     // Use the URL custom field to fetch the feed items for this source
                     if( !empty( $feed_url ) ) {             
-                        $feed = fetch_feed( $feed_url ); 
+                        add_filter( 'wp_feed_cache_transient_lifetime' , 'wprss_return_7200' );
+                        $feed = fetch_feed( $feed_url );
+                        remove_filter( 'wp_feed_cache_transient_lifetime' , 'wprss_return_7200' ); 
                         if ( !is_wp_error( $feed ) ) {
                             // Figure out how many total items there are, but limit it to 10. 
                             $maxitems = $feed->get_item_quantity(10); 
@@ -220,7 +243,7 @@
                                     'post_status' => 'publish',
                                     'post_type' => 'wprss_feed_item'
                                 );                
-                                $inserted_ID = wp_insert_post( $feed_item, $wp_error );
+                                $inserted_ID = wp_insert_post( $feed_item );
                                                   
                                 update_post_meta( $inserted_ID, 'wprss_item_permalink', $item->get_permalink() );
                                 update_post_meta( $inserted_ID, 'wprss_item_description', $item->get_description() );                        
@@ -233,7 +256,7 @@
                 wp_reset_postdata(); // Restore the $post global to the current post in the main query        
            // } // end if
         } // end if
-    } 
+    } // end wprss_fetch_all_feed_items
 
 
     add_action('wp_insert_post', 'wprss_fetch_feed_items'); 
@@ -247,7 +270,7 @@
         // Get current post that triggered the hook, $post_id passed via the hook
         $post = get_post( $post_id );
                 
-        if( ( $post->post_type == 'wprss_feed') && ( $post->post_status == 'publish' ) ) { 
+        if( ( $post->post_type == 'wprss_feed' ) && ( $post->post_status == 'publish' ) ) { 
         
             // Get all feed sources
             $feed_sources = new WP_Query( array(
@@ -267,7 +290,9 @@
                     
                     // Use the URL custom field to fetch the feed items for this source
                     if( ! empty( $feed_url ) ) {             
-                        $feed = fetch_feed( $feed_url ); 
+                        add_filter( 'wp_feed_cache_transient_lifetime' , 'wprss_return_7200' );
+                        $feed = fetch_feed( $feed_url );
+                        remove_filter( 'wp_feed_cache_transient_lifetime' , 'wprss_return_7200' ); 
                         if ( ! is_wp_error( $feed ) ) {
                             // Figure out how many total items there are, but limit it to 10. 
                             $maxitems = $feed->get_item_quantity(10); 
@@ -299,7 +324,7 @@
                                     'post_status' => 'publish',
                                     'post_type' => 'wprss_feed_item'
                                 );                
-                                $inserted_ID = wp_insert_post( $feed_item, $wp_error );
+                                $inserted_ID = wp_insert_post( $feed_item );
                                                   
                                 update_post_meta( $inserted_ID, 'wprss_item_permalink', $item->get_permalink() );
                                 update_post_meta( $inserted_ID, 'wprss_item_description', $item->get_description() );                        
@@ -312,7 +337,18 @@
                 wp_reset_postdata(); // Restore the $post global to the current post in the main query        
             } // end if
         } // end if
-    }        
+    } // end wprss_fetch_feed_items       
+
+
+    /**
+     * Redirects to wprss_display_feed_items
+     * It is used for backwards compatibility to versions < 2.0
+     * 
+     * @since 2.1
+     */
+    function wp_rss_aggregator( $args = array() ) { 
+        wprss_display_feed_items( $args ); 
+    }
 
 
     /**
@@ -355,16 +391,19 @@
         $args = wp_parse_args( $args, $defaults );
         // Declare each item in $args as its own variable
         extract( $args, EXTR_SKIP );       
-        
-        // Query to get all feed items for display
-        $feed_items = new WP_Query( array(
+
+        // Arguments for the next query to fetch all feed items
+        $feed_items_args = array(
             'post_type'      => 'wprss_feed_item',
             'posts_per_page' => $settings['feed_limit'], 
             'orderby'        => 'meta_value', 
             'meta_key'       => 'wprss_item_date', 
             'order'          => 'DESC',
-        ) );
+        );
 
+        // Query to get all feed items for display
+        $feed_items = new WP_Query( apply_filters( 'wprss_display_feed_items_query', $feed_items_args ) );
+        
         if( $feed_items->have_posts() ) {
             echo "$links_before\n";
             while ( $feed_items->have_posts() ) {                
@@ -375,8 +414,8 @@
 
                 // convert from Unix timestamp        
                 $date = date( 'Y-m-d', intval( get_post_meta( get_the_ID(), 'wprss_item_date', true ) ) );
-                echo "\t\t".'<li><a ' . $class . $open_setting . ' ' . $follow_setting . ' href="'. $permalink . '">'. get_the_title(). '</a><br>' . "\n"; 
-                echo "\t\t".'<span class="feed-source">Source: ' . $source_name . ' | ' . $date . '</span></li>'. "\n\n"; 
+                echo "\t\t" . "$link_before" . '<a ' . $class . $open_setting . ' ' . $follow_setting . ' href="'. $permalink . '">'. get_the_title(). '</a><br>' . "\n"; 
+                echo "\t\t".'<span class="feed-source">' . __( "Source: ") . $source_name . ' | ' . $date . '</span>' . "$link_after" . "\n\n"; 
             }
             echo "\t\t $links_after";
             echo paginate_links();
@@ -384,9 +423,9 @@
             wp_reset_postdata();
             
         } else {
-            echo 'No feed items found';
+            _e( 'No feed items found', 'wprss' );
         }
-    }
+    } // end wprss_display_feed_items
 
     
     add_action( 'trash_wprss_feed', 'wprss_delete_feed_items' );
@@ -416,7 +455,7 @@
         endif;
  
         wp_reset_postdata();
-    }    
+    } // end wprss_delete_feed_items   
 
  
     /**
@@ -454,4 +493,4 @@
                 $purge = wp_delete_post( $post->ID, true );
             }
         }
-    }    
+    } // end wprss_truncate_posts   

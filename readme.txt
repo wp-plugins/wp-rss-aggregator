@@ -5,7 +5,7 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-rss-aggregator/
 Tags: rss, feeds, aggregation, aggregator, import, feed aggregator, rss aggregator
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 2.0
+Stable tag: 2.1
 Imports and merges multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
 == Description ==
@@ -80,6 +80,12 @@ Or use the shortcode in your posts and pages:
 3. The settings page.
 
 == Changelog ==
+
+= Version 2.1 (2012-09-27) =
+* Now localised for translations
+* Fixed bug with date string
+* Fixed $link_before and $link_after, now working
+* Added backwards compatibility for wp_rss_aggregator() function
 
 = Version 2.0 (2012-09-21) =
 * Bulk of code rewritten and refactored

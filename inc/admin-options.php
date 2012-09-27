@@ -42,9 +42,8 @@
     function wprss_register_menu_pages() {        
           
         //create submenu items        
-        add_submenu_page( 'edit.php?post_type=wprss_feed', 'WP RSS Aggregator Settings', 'Settings', 'manage_options', 'wprss-aggregator-settings', 'wprss_settings_page' );             
+        add_submenu_page( 'edit.php?post_type=wprss_feed', __( 'WP RSS Aggregator Settings', 'wprss' ), __( 'Settings', 'wprss' ), 'manage_options', 'wprss-aggregator-settings', 'wprss_settings_page' );             
     }
-
 
 
     /**
@@ -64,13 +63,13 @@
 
         add_settings_section( 'wprss-settings-main', '', 'wprss_settings_section_text', 'wprss-aggregator-settings' );   
         
-        add_settings_field( 'wprss-settings-open-dd', 'Open links behaviour', 
+        add_settings_field( 'wprss-settings-open-dd', __( 'Open links behaviour', 'wprss' ), 
                             'wprss_setting_open_dd', 'wprss-aggregator-settings', 'wprss-settings-main');
 
-        add_settings_field( 'wprss-settings-follow-dd', 'Set links as', 
+        add_settings_field( 'wprss-settings-follow-dd', __( 'Set links as', 'wprss' ), 
                             'wprss_setting_follow_dd', 'wprss-aggregator-settings', 'wprss-settings-main');     
 
-        add_settings_field( 'wprss-settings-feed-limit', 'Feed limit', 
+        add_settings_field( 'wprss-settings-feed-limit', __( 'Feed limit', 'wprss' ), 
                             'wprss_setting_feed_limit', 'wprss-aggregator-settings', 'wprss-settings-main');  
 
     }  
@@ -85,12 +84,12 @@
         <div class="wrap">
             <?php screen_icon( 'wprss-aggregator' ); ?>
         
-            <h2>WP RSS Aggregator Settings</h2>
+            <h2><?php _e( 'WP RSS Aggregator Settings' ); ?></h2>
             
             <form action="options.php" method="post">            
                 <?php settings_fields( 'wprss_settings' ) ?>
                 <?php do_settings_sections( 'wprss-aggregator-settings' ); ?>
-                <p class="submit"><input type="submit" value="Save Settings" name="submit" class="button-primary"></p>
+                <p class="submit"><input type="submit" value="<?php _e( 'Save Settings', 'wprss' ); ?>" name="submit" class="button-primary"></p>
             </form>
         </div>
         <?php
@@ -109,7 +108,10 @@
      */
     function wprss_setting_follow_dd() {
         $options = get_option( 'wprss_settings' );
-        $items = array( "No follow", "Follow" );
+        $items = array( 
+                    __( 'No follow', 'wprss' ), 
+                    __( 'Follow', 'wprss' ) 
+        );        
         echo "<select id='follow-dd' name='wprss_settings[follow_dd]'>";
         foreach( $items as $item ) {
             $selected = ( $options['follow_dd'] == $item) ? 'selected="selected"' : '';
@@ -125,7 +127,11 @@
      */
     function wprss_setting_open_dd() {
         $options = get_option( 'wprss_settings' );
-        $items = array( "Lightbox", "New window", "None" );
+        $items = array( 
+            __( 'Lightbox', 'wprss' ), 
+            __( 'New window', 'wprss' ), 
+            __( 'None', 'wprss' )
+        );
         echo "<select id='open-dd' name='wprss_settings[open_dd]'>";
         foreach( $items as $item ) {
             $selected = ( $options['open_dd'] == $item) ? 'selected="selected"' : '';
