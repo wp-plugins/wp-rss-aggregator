@@ -75,9 +75,13 @@ Or use the shortcode in your posts and pages:
 
 1. The output of this plugin on the frontend, as seen on www.wpmayor.com.
 
-2. Admin administration panel.
+2. Feed sources list.
 
-3. The settings page.
+3. Adding a new feed source.
+
+4. Imported feeds.
+
+5. Plugin settings page.
 
 == Changelog ==
 
