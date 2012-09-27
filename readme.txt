@@ -66,7 +66,7 @@ Since version 2.0 you can also specify the number of feed items shown on the fro
 = How can I output the feeds in my theme? =
 
 You can either call the function directly within the theme:
-`<?php wp_rss_aggregator(); ?>`
+`<?php wprss_display_feed_items(); ?>`
 
 Or use the shortcode in your posts and pages:
 [wp_rss_aggregator]
