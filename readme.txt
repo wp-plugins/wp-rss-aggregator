@@ -41,14 +41,20 @@ An example of a shortcode with parameters:
 It is advisable to use the 'HTML' view of the editor when inserting the shortcode with paramters.
 
 An example of a function call from within the template files:
-`<?php
-wp_rss_aggregator(
+`
+<?php 
+wprss_display_feed_items(
 'links_before' => '<ul>',
 'links_after' => '</ul>',
 'link_before' => '<li>',
 'link_after' => '</li>'
-);
-?>`
+); 
+?>
+`
+
+OR 
+
+`<?php do_shortcode('[wp-rss-aggregator]'); ?>`
 
 You can also set whether the feed links should open in a new window, current window or even a lightbox, via the settings panel. 
 
@@ -60,7 +66,7 @@ Since version 2.0 you can also specify the number of feed items shown on the fro
 = How can I output the feeds in my theme? =
 
 You can either call the function directly within the theme:
-`<?php wp_rss_aggregator(); ?>`
+`<?php wprss_display_feed_items(); ?>`
 
 Or use the shortcode in your posts and pages:
 [wp_rss_aggregator]
