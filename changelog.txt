@@ -1,4 +1,4 @@
-2.0 (2012-08-21)
+2.0 (2012-09-21)
 Bulk of code rewritten and refactored
 Added install and upgrade functions
 Added DB version setting

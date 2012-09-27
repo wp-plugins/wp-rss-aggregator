@@ -43,12 +43,12 @@ It is advisable to use the 'HTML' view of the editor when inserting the shortcod
 An example of a function call from within the template files:
 `
 <?php 
-wprss_display_feed_items(
+wprss_display_feed_items( $args = array(
 'links_before' => '<ul>',
 'links_after' => '</ul>',
 'link_before' => '<li>',
 'link_after' => '</li>'
-); 
+)); 
 ?>
 `
 
@@ -81,7 +81,7 @@ Or use the shortcode in your posts and pages:
 
 == Changelog ==
 
-= Version 2.0 =
+= Version 2.0 (2012-09-21) =
 * Bulk of code rewritten and refactored
 * Added install and upgrade functions
 * Added DB version setting
