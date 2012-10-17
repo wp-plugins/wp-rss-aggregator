@@ -88,6 +88,9 @@ Or use the shortcode in your posts and pages:
 
 == Changelog ==
 
+= Version 2.2.1 (2012-10-17) =
+* Fixed bug: wprss_feed_source_order assumes everyone is an admin
+
 = Version 2.2 (2012-10-01) =
 * Italian translation added
 * Feed source order changed to alphabetical
