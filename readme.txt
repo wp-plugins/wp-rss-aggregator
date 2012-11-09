@@ -17,7 +17,7 @@ The plugin uses SimplePie for the feed operations. The actual news feeds are not
 You can call the function from within the theme or even use a shortcode with parameters.
 
 = Demo =
-The plugin can be seen in use on the [WPMayor.com WordPress News page](http://www.wpmayor.com/wordpress-news/)
+The plugin can be seen in use on the [FitForBlogging.com Internet Marketing News page](http://www.fitforblogging.com/news) or [WPMayor.com WordPress News page](http://www.wpmayor.com/wordpress-news/)
 
 = Credit = 
 Created by Jean Galea. Need a [WordPress Freelance Developer](http://www.jeangalea.com/services/wordpress-consultancy-development/)?
