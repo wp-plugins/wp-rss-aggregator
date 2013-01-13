@@ -30,7 +30,7 @@ Italian - Davide De Maestri
 1. Upload the `wp-rss-aggregator` folder to the `/wp-content/plugins/` directory
 2. Activate the WP RSS Aggregator plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin by going to the `RSS Aggregator` menu item that appears in your dashboard menu.
-3. Use the shortcode in your posts or pages: `[wp_rss_aggregator]`
+4. Use the shortcode in your posts or pages: `[wp_rss_aggregator]`
 
 The parameters accepted are:
 
