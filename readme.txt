@@ -5,7 +5,7 @@ Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, aggregator, import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, multi rss, rss import, feed import, feed import, multiple feed import, feed aggregation, multiple feeds, multi feed importer, multi feed import, multi import, autoblog, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 3.0
+Stable tag: 3.1
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
 == Description ==
@@ -90,6 +90,15 @@ Or use the shortcode in your posts and pages:
 5. Plugin settings page.
 
 == Changelog ==
+
+= Version 3.1 (2013-06-06) =
+* New feature: Option to set the number of feed items imported from every feed (default 5)
+* New feature: Import and Export aggregator settings and feed sources
+* New feature: Debugging page allowing manual feed refresh and feed reset
+* Enhanced: Faster handling of restoring sources from trash when feed limit is 0
+* Fixed bug: Limiter on number of overall feeds stored not working
+* Fixed bug: Incompatibility issue with Foobox plugin fixed 
+* Fixed bug: Duplicate feeds sometimes imported
 
 = Version 3.0 (2013-03-16) =
 * New feature: Option to select cron frequency

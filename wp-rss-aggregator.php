@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wpmayor.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 3.0
+    Version: 3.1
     Author: Jean Galea
     Author URI: http://www.wpmayor.com
     License: GPLv3
@@ -28,7 +28,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   3.0
+     * @version   3.1
      * @since     1.0
      * @author    Jean Galea <info@jeangalea.com>
      * @copyright Copyright (c) 2012-2013, Jean Galea
@@ -42,11 +42,11 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '3.0', true );
+        define( 'WPRSS_VERSION', '3.1', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
-        define( 'WPRSS_DB_VERSION', 3 );    
+        define( 'WPRSS_DB_VERSION', 4 );    
 
     // Set the plugin prefix 
     if( !defined( 'WPRSS_PREFIX' ) )
@@ -106,10 +106,19 @@
     require_once ( WPRSS_INC . 'admin-options.php' );             
 
     /* Load the settings import/export file */
-    //require_once ( WPRSS_INC . 'admin-import-export.php' ); 
+    require_once ( WPRSS_INC . 'admin-import-export.php' ); 
 
     /* Load the debugging file */
-    //require_once ( WPRSS_INC . 'admin-debugging.php' ); 
+    require_once ( WPRSS_INC . 'system-info.php' ); 
+
+    /* Load the miscellaneous functions file */
+    require_once ( WPRSS_INC . 'misc-functions.php' ); 
+
+    /* Load the OPMLL importer file */
+    require_once ( WPRSS_INC . 'OPML.php' );       
+
+    /* Load the system info file */
+    require_once ( WPRSS_INC . 'admin-debugging.php' );     
 
     /* Load the admin display-related functions */
     require_once ( WPRSS_INC . 'admin-display.php' );     
@@ -182,5 +191,5 @@
      * @return void     
      */  
     function wprss_load_textdomain() { 
-        load_plugin_textdomain( 'wprss', false, plugin_basename( __FILE__ ) . '/languages/' );
+        load_plugin_textdomain( 'wprss', false, plugin_dir_path( __FILE__ ) . '/languages/' );
     }
