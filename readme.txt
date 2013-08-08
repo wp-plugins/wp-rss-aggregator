@@ -103,6 +103,10 @@ Or use the shortcode in your posts and pages:
 
 == Changelog ==
 
+= Version 3.3.1 (2013-08-09) =
+* Fixed Bug: Roles and Capabilities file had not been included
+* Fixed Bug: Error on install, function not found
+
 = Version 3.3 (2013-08-08) =
 * New feature: OPML importer
 * New feature: Feed item limits for individual Feed Sources
