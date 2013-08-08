@@ -5,7 +5,7 @@ Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, aggregator, import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, multi rss, rss import, feed import, feed import, multiple feed import, feed aggregation, multiple feeds, multi feed importer, multi feed import, multi import, autoblog, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 3.3
+Stable tag: 3.3.1
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
 == Description ==
@@ -20,15 +20,15 @@ Since the plugin uses Custom Post Types to store the imported feeds, you are als
 
 WP RSS Aggregator can also be used to display feed items from a particular feed source anywhere you want on your site.
 
-== Premium Add-Ons ==
+= Premium Add-Ons =
 
 Add-Ons that add more functionality to the core plugin are now [available for purchase](http://www.wprssaggregator.com/extensions/).
 
 = Demo =
-The plugin can be seen in use on the [WPMayor.com WordPress News page](http://www.wpmayor.com/wordpress-news/)
+The plugin can be seen in use on the [WPMayor.com WordPress News page](http://www.wpmayor.com/wordpress-news/).
 
 == Documentation =
-Instructions for plugin usage are available on the plugin's (documentation page)[http://www.wprssaggregator.com/documentation/].
+Instructions for plugin usage are available on the plugin's [documentation page](http://www.wprssaggregator.com/documentation/).
 
 = Credit = 
 Created by Jean Galea from [WP Mayor](http://www.wpmayor.com)
