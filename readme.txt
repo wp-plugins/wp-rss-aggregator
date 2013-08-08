@@ -4,8 +4,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, aggregator, import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, multi rss, rss import, feed import, feed import, multiple feed import, feed aggregation, multiple feeds, multi feed importer, multi feed import, multi import, autoblog, autoblogging, autoblogger
 Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 3.2
+Tested up to: 3.6
+Stable tag: 3.3
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
 == Description ==
@@ -18,6 +18,8 @@ The plugin uses SimplePie for the feed operations.
 You can call the function from within the theme or even use a shortcode with parameters.
 
 Since the plugin uses Custom Post Types to store the imported feeds, you are also free to display them in any way you want, in a similar fashion as you would with other post types such as Posts or Pages.
+
+It can be used as a multiple RSS feed import facility, or even for displaying items from a single feed source.
 
 = Demo =
 The plugin can be seen in use on the [WPMayor.com WordPress News page](http://www.wpmayor.com/wordpress-news/)
@@ -94,6 +96,18 @@ Or use the shortcode in your posts and pages:
 5. Plugin settings page.
 
 == Changelog ==
+
+= Version 3.3 (2013-08-08) =
+* New feature: OPML importer
+* New feature: Feed item limits for individual Feed Sources
+* New feature: Custom feed URL
+* New feature: Feed limit on custom feed
+* New feature: New 'Fetch feed items' action for each Feed Source in listing display
+* New feature: Option to enable link to source
+* Enhanced: Date strings now change according to locale being used (i.e. compatible with WPML)
+* Enhanced: Capabilities implemented
+* Enhanced: Feed Sources row action 'View' removed
+* Fixed Bug: Proxy feed URLs resulting in the permalink: example.com/url
 
 = Version 3.2 (2013-07-06) =
 * New feature: Parameter to limit number of feeds displayed

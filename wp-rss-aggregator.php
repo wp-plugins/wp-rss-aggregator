@@ -1,11 +1,11 @@
 <?php
     /*
     Plugin Name: WP RSS Aggregator
-    Plugin URI: http://www.wpmayor.com
+    Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 3.2
+    Version: 3.3
     Author: Jean Galea
-    Author URI: http://www.wpmayor.com
+    Author URI: http://www.wprssaggregator.com
     License: GPLv3
     */
 
@@ -28,7 +28,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   3.2
+     * @version   3.3
      * @since     1.0
      * @author    Jean Galea <info@jeangalea.com>
      * @copyright Copyright (c) 2012-2013, Jean Galea
@@ -42,11 +42,11 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '3.2', true );
+        define( 'WPRSS_VERSION', '3.3', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
-        define( 'WPRSS_DB_VERSION', 4 );    
+        define( 'WPRSS_DB_VERSION', 5 );
 
     // Set the plugin prefix 
     if( !defined( 'WPRSS_PREFIX' ) )
@@ -90,11 +90,17 @@
     /* Load the custom post types and taxonomies. */
     require_once ( WPRSS_INC . 'custom-post-types.php' );  
 
+    /* Load the file for setting capabilities of our post types */
+    require_once ( WPRSS_INC . 'roles-capabilities.php' ); 
+
     /* Load the feed processing functions file */
     require_once ( WPRSS_INC . 'feed-processing.php' );   
 
     /* Load the feed display functions file */
     require_once ( WPRSS_INC . 'feed-display.php' );            
+
+    /* Load the custom feed file */
+    require_once ( WPRSS_INC . 'custom-feed.php' );            
 
     /* Load the cron job scheduling functions. */
     require_once ( WPRSS_INC . 'cron-jobs.php' ); 
@@ -114,8 +120,11 @@
     /* Load the miscellaneous functions file */
     require_once ( WPRSS_INC . 'misc-functions.php' ); 
 
-    /* Load the OPMLL importer file */
-    require_once ( WPRSS_INC . 'OPML.php' );       
+    /* Load the OPML Class file */
+    require_once ( WPRSS_INC . 'opml.php' );
+
+    /* Load the OPML Importer file */
+    require_once ( WPRSS_INC . 'opml-importer.php' );
 
     /* Load the system info file */
     require_once ( WPRSS_INC . 'admin-debugging.php' );     
@@ -131,9 +140,13 @@
 
     /* Load the Ajax notification file */
     require_once ( WPRSS_INC . 'admin-ajax-notice.php' ); 
+    
+    /* Load the dashboard welcome screen file */
+    require_once ( WPRSS_INC . 'admin-dashboard.php' );  
 
     /* Load the logging class */
     require_once ( WPRSS_INC . 'libraries/WP_Logging.php' );   
+
     
     register_activation_hook( __FILE__ , 'wprss_activate' );
     register_deactivation_hook( __FILE__ , 'wprss_deactivate' );
@@ -166,6 +179,8 @@
         wprss_settings_initialize();
         flush_rewrite_rules();
         wprss_schedule_fetch_all_feeds_cron();   
+        // Sets a transient to trigger a redirect upon completion of activation procedure
+        set_transient( '_wprss_activation_redirect', true, 30 );
     }    
 
 
