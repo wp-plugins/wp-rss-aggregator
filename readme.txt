@@ -5,7 +5,7 @@ Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, aggregator, import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, multi rss, rss import, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblog, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.7
-Stable tag: 3.4.2
+Stable tag: 3.4.3
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
 == Description ==
@@ -21,7 +21,9 @@ Since the plugin uses Custom Post Types to store the imported feeds, you are als
 WP RSS Aggregator can also be used to display feed items from a particular feed source anywhere you want on your site.
 
 = Premium Add-Ons =	
-Add-Ons that add more functionality to the core plugin are now [available for purchase](http://www.wprssaggregator.com/extensions/).
+Add-Ons that add more functionality to the core plugin are now [available for purchase](http://www.wprssaggregator.com/extensions/). 
+
+The add-ons let you do things like excerpts and thumbnails, keyword filtering, categorisation and even importing feeds to posts and other custom posts types of your choice.
 
 = Demo =
 The plugin can be seen in use on the [WPMayor.com WordPress News page](http://www.wpmayor.com/wordpress-news/).
@@ -102,7 +104,12 @@ Or use the shortcode in your posts and pages:
 
 == Changelog ==
 
-= 3.4.2 (2013-9-19)
+= 3.4.3 (2013-10-20) =
+* Fixed bug: Removed anonymous functions for backwards PHP compatibility
+* Bug fix: Added suppress_filters in feed-display.php to prevent a user reported error
+* Bug fix: Missing <li> in certain feed displays
+
+= 3.4.2 (2013-9-19) =
 * Enhanced: Added some hooks for Feed to Post compatibility
 * Enhanced: Moved date settings to a more appropriate location
 
