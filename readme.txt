@@ -52,7 +52,7 @@ Add-Ons that add more functionality to the core plugin are now [available for pu
 The plugin can be seen in use on the [demo page](http://www.wprssaggregator.com/demo/).
 
 = Video Walkthrough =
-[youtube http://www.youtube.com/embed/5J-S2vXtQ5w]
+[youtube http://www.youtube.com/watch?v=5J-S2vXtQ5w]
 
 = Documentation =
 Instructions for plugin usage are available on the plugin's [documentation page](http://www.wprssaggregator.com/documentation/).
