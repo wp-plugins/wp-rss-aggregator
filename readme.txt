@@ -25,7 +25,7 @@ You can add any number of feeds through an administration panel, the plugin will
 
 To display your imported feed items, you can use a shortcode or call the display function directly from within your theme.
 
-More Features: 
+__More Features__: 
 
 * Export a custom RSS feed based on your feed sources
 * Pagination
