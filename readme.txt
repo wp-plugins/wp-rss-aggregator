@@ -117,18 +117,18 @@ Or use the shortcode in your posts and pages:
 
 = Can I store imported feed items as posts? = 
 
-You can do that with the Feed to Post add-on. You will not only be able to store items as posts, but also as other custom post types, as well as set the author, auto set tags and categories, and much more. 
+You can do that with the [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to-post) add-on. You will not only be able to store items as posts, but also as other custom post types, as well as set the author, auto set tags and categories, and much more. 
 
 = Some RSS feeds only give a short excerpt, any way around that? =
 
-Yes, within the Feed to Post add-on we have an advanced feature that can get the full content of those feeds that only supply a short excerpt.
+Yes, within the [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to-post) add-on we have an advanced feature that can get the full content of those feeds that only supply a short excerpt.
 
 
 == Screenshots ==
 
-1. The output of this plugin on the frontend, as seen on www.wpmayor.com.
+1. The output of this plugin on the frontend.
 
-2. Feed sources list.
+2. The output from the aggregator with the [Excerpts & Thumbnails](http://www.wprssaggregator.com/extensions/excerpts-thumbnails) add-on installed.
 
 3. Adding a new feed source.
 
