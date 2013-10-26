@@ -7,7 +7,6 @@ Requires at least: 3.3
 Tested up to: 3.7
 Stable tag: 3.4.4
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
 == Description ==
@@ -89,13 +88,13 @@ An example of a function call from within the template files:
 `
 <?php 
 wprss_display_feed_items( $args = array(
-'links_before' => '<ul>',
-'links_after' => '</ul>',
-'link_before' => '<li>',
-'link_after' => '</li>',
-'limit' => '8',
-'source' => '5,9'
-)); 
+	'links_before' => '<ul>',
+	'links_after' => '</ul>',
+	'link_before' => '<li>',
+	'link_after' => '</li>',
+	'limit' => '8',
+	'source' => '5,9'
+	)); 
 ?>
 `
 
