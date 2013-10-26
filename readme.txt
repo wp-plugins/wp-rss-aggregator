@@ -9,6 +9,7 @@ Stable tag: 3.4.4
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
+
 == Description ==
 
 WP RSS Aggregator is the most comprehensive and elegant RSS feed solution for WordPress.
@@ -16,6 +17,7 @@ WP RSS Aggregator is the most comprehensive and elegant RSS feed solution for Wo
 The original plugin for importing, merging and displaying RSS and Atom feeds on your WordPress site.
 
 With WP RSS Aggregator, you can:
+
 * Display feeds from one or more sites on your blog 
 * Aggregate feeds from multiple sites 
 
@@ -24,6 +26,7 @@ You can add any number of feeds through an administration panel, the plugin will
 To display your imported feed items, you can use a shortcode or call the display function directly from within your theme.
 
 More Features: 
+
 * Export a custom RSS feed based on your feed sources
 * Pagination
 * Set the feed import time interval
@@ -49,7 +52,6 @@ Add-Ons that add more functionality to the core plugin are now [available for pu
 The plugin can be seen in use on the [demo page](http://www.wprssaggregator.com/demo/).
 
 = Video Walkthrough =
-
 [youtube http://www.youtube.com/embed/5J-S2vXtQ5w]
 
 = Documentation =
@@ -63,6 +65,7 @@ WP RSS Aggregator uses the SimplePie class to import and handle feeds, and store
 
 = Translations =
 Italian - Davide De Maestri
+
 
 == Installation ==
 
@@ -102,6 +105,7 @@ OR
 
 `<?php do_shortcode('[wp-rss-aggregator]'); ?>`
 
+
 == Frequently Asked Questions ==
 = How can I output the feeds in my theme? =
 
@@ -119,6 +123,7 @@ You can do that with the Feed to Post add-on. You will not only be able to store
 
 Yes, within the Feed to Post add-on we have an advanced feature that can get the full content of those feeds that only supply a short excerpt.
 
+
 == Screenshots ==
 
 1. The output of this plugin on the frontend, as seen on www.wpmayor.com.
@@ -130,6 +135,7 @@ Yes, within the Feed to Post add-on we have an advanced feature that can get the
 4. Imported feeds.
 
 5. Plugin settings page.
+
 
 == Changelog ==
 
@@ -260,7 +266,6 @@ Yes, within the Feed to Post add-on we have an advanced feature that can get the
 * Limit of 15 items max imported for each source
 * Fixed issue of page content displaying incorrectly after feeds
 
-
 = Version 1.1 (2012-08-13) =
 * Now requires WordPress 3.0
 * More flexible fetching of images directory
@@ -271,7 +276,6 @@ Yes, within the Feed to Post add-on we have an advanced feature that can get the
 * Using constants for oftenly used locations
 * Code refactoring
 * Changes in file and folder structure
-
 
 = Version 1.0 (2012-01-06) =
 * Initial release.
