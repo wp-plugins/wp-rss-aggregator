@@ -40,6 +40,7 @@ __More Features__:
 * Opens YouTube, DailyMotion and Vimeo videos directly 
 * Limit number of feed items stored in the database
 * Feed autodiscovery, which lets you add feeds without even knowing the exact URL. 
+* Extendable via action and filter hooks
 * Integrated with the Simplepie library that come with WordPress. This includes RSS 0.91 and RSS 1.0 formats, the popular RSS 2.0 format, Atom etc.
 
 = Premium Add-Ons =	
@@ -142,6 +143,10 @@ Yes, within the [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to
 
 
 == Changelog ==
+
+= 3.4.6 (2013-11-1) =
+* Enhanced: Added more hooks to debugging page for the Feed to Post add-on.
+* Fixed bug: Uninitialized loop index
 
 = 3.4.5 (2013-10-30) =
 * Bug Fix: Feed items were not being imported while the WPML plugin was active.
