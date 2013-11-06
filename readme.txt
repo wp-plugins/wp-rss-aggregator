@@ -5,7 +5,7 @@ Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, aggregator, import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, multi rss, rss import, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblog, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.7
-Stable tag: 3.4.6
+Stable tag: 3.5
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
@@ -143,6 +143,12 @@ Yes, within the [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to
 
 
 == Changelog ==
+
+= 3.5 (2013-11-6) =
+* New Feature: Can delete feed items for a particular source
+* Enhanced: the 'Fetch feed items' row action for feed sources resets itself after 3.5 seconds.
+* Enhanced: The feed image is saved for each url.
+* Fixed bug: Link to source now links to correct url. Previously linked to site's feed.
 
 = 3.4.6 (2013-11-1) =
 * Enhanced: Added more hooks to debugging page for the Feed to Post add-on.
