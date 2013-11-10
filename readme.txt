@@ -146,6 +146,7 @@ Yes, within the [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to
 
 = 3.5.1 (2013-11-09) =
 * Enhanced: Increased compatibility with RSS sources.
+* Fixed bug: Pagination not working on home page
 
 = 3.5 (2013-11-6) =
 * New Feature: Can delete feed items for a particular source
