@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 3.5.2
+    Version: 3.6
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,7 +29,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   3.5.2
+     * @version   3.6
      * @since     1.0
      * @author    Jean Galea <info@jeangalea.com>
      * @copyright Copyright (c) 2012-2013, Jean Galea
@@ -43,11 +43,11 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '3.5.2', true );
+        define( 'WPRSS_VERSION', '3.6', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
-        define( 'WPRSS_DB_VERSION', 10 );
+        define( 'WPRSS_DB_VERSION', 11 );
 
     // Set the plugin prefix 
     if( !defined( 'WPRSS_PREFIX' ) )
@@ -165,7 +165,145 @@
      * @return void
      */     
     function wprss_init() {                    
-        do_action( 'wprss_init' );          
+        do_action( 'wprss_init' );
+    }
+
+
+
+    add_filter( 'wprss_admin_pointers', 'wprss_check_tracking_notice' );
+    /**
+     * Сhecks the tracking option and if not set, shows a pointer with opt in and out options.
+     * 
+     * @since 3.6
+     */
+    function wprss_check_tracking_notice( $pointers ){
+        $settings = get_option( 'wprss_settings_general' );
+        $wprss_tracking = ( isset( $settings['tracking'] ) )? $settings['tracking'] : '';
+
+        if ( $wprss_tracking === '' ) {
+            $tracking_pointer = array(
+                'wprss_tracking_pointer'    =>  array(
+
+                    'target'            =>  '#wpadminbar',
+                    'options'           =>  array(
+                        'content'           =>  '<h3>' . __( 'Help improve WP RSS Aggregator', 'wprss' ) . '</h3>' . '<p>' . __( 'You\'ve just installed WP RSS Aggregator. Please helps us improve it by allowing us to gather anonymous usage stats so we know which configurations, plugins and themes to test with.', 'wprss' ) . '</p>',
+                        'position'          =>  array(
+                            'edge'              =>  'top',
+                            'align'             =>  'center',
+                        ),
+                        'active'            =>  TRUE,
+                        'btns'              =>  array(
+                            'wprss-tracking-opt-out'    =>  __( 'Do not allow tracking', 'wprss' ),
+                            'wprss-tracking-opt-in'    =>  __( 'Allow tracking', 'wprss' ),
+                        )
+                    )
+                )
+
+            );
+            return array_merge( $pointers, $tracking_pointer );
+        }
+        else return $pointers;
+    }
+
+
+
+    add_action( 'admin_enqueue_scripts', 'wprss_prepare_pointers', 1000 );
+    /**
+     * Prepare the admin pointers
+     * 
+     * @since 3.6
+     */
+    function wprss_prepare_pointers() {
+        // Don't run on WP < 3.3
+        if ( get_bloginfo( 'version' ) < '3.3' )
+            return;
+
+        $screen = get_current_screen();
+        $screen_id = $screen->id;
+
+        // Get pointers
+        $pointers = apply_filters( 'wprss_admin_pointers', array() );
+
+        if ( ! $pointers || ! is_array( $pointers ) )
+            return;
+
+        $dismissed = explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
+        $valid_pointers = array();
+
+        // Check pointers and remove dismissed ones.
+        foreach ( $pointers as $pointer_id => $pointer ) {
+            // Sanity check
+            if ( in_array( $pointer_id, $dismissed ) || empty( $pointer )  || empty( $pointer_id ) || empty( $pointer['target'] ) || empty( $pointer['options'] ) )
+                continue;
+            $pointer['pointer_id'] = $pointer_id;
+            // Add the pointer to $valid_pointers array
+            $valid_pointers['pointers'][] =  $pointer;
+        }
+
+        // No valid pointers? Stop here.
+        if ( empty( $valid_pointers ) )
+            return;
+
+        // Add pointers style to queue.
+        wp_enqueue_style( 'wp-pointer' );
+     
+        // Add pointers script to queue. Add custom script.
+        wp_enqueue_script( 'wprss-pointers', WPRSS_JS . 'pointers.js', array( 'wp-pointer' ) );
+     
+        // Add pointer options to script.
+        wp_localize_script( 'wprss-pointers', 'wprssPointers', $valid_pointers );
+
+        add_action( 'admin_print_footer_scripts', 'wprss_footer_pointer_scripts' );
+    }
+
+
+    /**
+     * Print the scripts for the admin pointers
+     * 
+     * @since 3.6
+     */
+    function wprss_footer_pointer_scripts() {
+        ?>
+        <script type="text/javascript">
+
+            jQuery(document).ready( function($) {
+
+                for( i in wprssPointers.pointers ) {
+                    pointer = wprssPointers.pointers[i];
+
+                    options = $.extend( pointer.options, {
+                        content: pointer.options.content,
+                        position: pointer.options.position,
+                        close: function() {
+                            $.post( ajaxurl, {
+                                pointer: pointer.pointer_id,
+                                action: 'dismiss-wp-pointer'
+                            });
+                        },
+                        buttons: function( event, t ){
+                            btns = jQuery('<div></div>');
+                            for( i in pointer.options.btns ) {
+                                btn = jQuery('<a>').attr('id', i).css('margin-left','5px').text( pointer.options.btns[i] );
+                                btn.bind('click.pointer', function () {
+                                    t.element.pointer('close');
+                                });
+                                btns.append( btn );
+                            }
+                            return btns;
+                        }
+                    });
+
+                    $(pointer.target).pointer( options ).pointer('open');
+                }
+
+                $('#wprss-tracking-opt-in').addClass('button-primary').click( function(){ wprssTrackingOptAJAX(1); } );
+                $('#wprss-tracking-opt-out').addClass('button-secondary').click( function(){ wprssTrackingOptAJAX(0); } );;
+
+            });
+
+        </script>
+
+        <?php
     }
 
 
@@ -222,7 +360,7 @@
     
     
     // PressTrends WordPress Action
-    //add_action( 'admin_init', 'wprss_presstrends_plugin' );  
+    add_action( 'admin_init', 'wprss_presstrends_plugin' );  
     /**
      * Track plugin usage using PressTrends
      * 
@@ -230,6 +368,9 @@
      * @return void     
      */  
     function wprss_presstrends_plugin() {
+        $settings = get_option( 'wprss_settings_general' );
+        if ( ! isset( $settings['tracking'] ) || $settings['tracking'] != 1 ) return;
+
         // PressTrends Account API Key
         $api_key = 'znggu7vk7x2ddsiigkerzsca9q22xu1j53hp';
         $auth    = 'd8giw5yyux4noasmo8gua98n7fv2hrl11';
