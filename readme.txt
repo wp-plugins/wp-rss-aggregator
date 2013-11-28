@@ -5,7 +5,7 @@ Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, autoblog aggregator, rss import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, rss multi importer, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.7.1
-Stable tag: 3.6.1
+Stable tag: 3.7
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
@@ -14,7 +14,7 @@ Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted 
 
 WP RSS Aggregator is the most comprehensive and elegant RSS feed solution for WordPress.
 
-The original plugin for importing, merging and displaying RSS and Atom feeds on your WordPress site.
+The original and premier plugin for importing, merging and displaying RSS and Atom feeds on your WordPress site.
 
 With WP RSS Aggregator, you can:
 
@@ -30,6 +30,7 @@ __More Features__:
 * Export a custom RSS feed based on your feed sources
 * Pagination
 * Set the feed import time interval
+* Scheduling of feed imports by feed source
 * Various shortcode parameters you can use to further customize the output
 * Choose whether to show/hide sources and dates
 * Choose the date format
@@ -46,7 +47,7 @@ __More Features__:
 = Premium Add-Ons =	
 Add-Ons that add more functionality to the core plugin are now [available for purchase](http://www.wprssaggregator.com/extensions/). 
 
-* [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to-post) - an advanced importer that lets you import feeds into post or custom post types. Populate a website in minutes (autoblog).
+* [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to-post) - an advanced importer that lets you import RSS feeds into posts or custom post types. Populate a website in minutes (autoblog).
 * [Keyword Filtering](http://www.wprssaggregator.com/extensions/keyword-filtering) - filter imported feeds based on keywords, so you only get items you're interested in.
 * [Excerpts & Thumbnails](http://www.wprssaggregator.com/extensions/excerpts-thumbnails) - display excerpts and thumbnails together with the title, date and source.
 * [Categories](http://www.wprssaggregator.com/extensions/categories) - categorise your feed sources and display items from a particular category at will within your site.
@@ -143,6 +144,13 @@ Yes, within the [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to
 
 
 == Changelog ==
+
+= 3.7 (2013-11-28) =
+* New Feature: State system - Feed sources can be activated/paused.
+* New Feature: State system - Feed sources can be set to activate or pause themselves at a specific date and time.
+* Enhanced: Added compatibility with nested outline elements in OPML files.
+* Enhanced: Admin menu icon image will change into a Dashicon, when WordPress is updated to 3.8 (Decemeber 2013).
+* Fixed bug: Custom Post types were breaking when the plugin is activated.
 
 = 3.6.1 (2013-11-17) =
 * Fixed bug: Missing 2nd argument for wprss_shorten_title()
