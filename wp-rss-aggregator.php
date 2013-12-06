@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 3.7
+    Version: 3.8
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,7 +29,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   3.7
+     * @version   3.8
      * @since     1.0
      * @author    Jean Galea <info@jeangalea.com>
      * @copyright Copyright (c) 2012-2013, Jean Galea
@@ -43,15 +43,19 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '3.7', true );
+        define( 'WPRSS_VERSION', '3.8', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
-        define( 'WPRSS_DB_VERSION', 11 );
+        define( 'WPRSS_DB_VERSION', 12 );
 
     // Set the plugin prefix 
     if( !defined( 'WPRSS_PREFIX' ) )
         define( 'WPRSS_PREFIX', 'wprss', true );            
+
+    // Set the plugin prefix 
+    if( !defined( 'WPRSS_FILE_CONSTANT' ) )
+        define( 'WPRSS_FILE_CONSTANT', __FILE__, true );
 
     // Set constant path to the plugin directory. 
     if( !defined( 'WPRSS_DIR' ) )
@@ -147,6 +151,9 @@
 
     /* Load the logging class */
     require_once ( WPRSS_INC . 'roles-capabilities.php' );      
+
+    /* Load the security reset file */
+    require_once ( WPRSS_INC . 'secure-reset.php' );
 
     /* Load the logging class */
     require_once ( WPRSS_INC . 'libraries/WP_Logging.php' );   
@@ -420,3 +427,23 @@
             set_transient( 'presstrends_cache_data', $data, 60 * 60 * 24 );
             }
         }  
+
+
+
+    /**
+     * Utility filter function that returns TRUE;
+     *
+     * @since 3.8
+     */
+    function wprss_enable() {
+        return TRUE;
+    }
+
+     /**
+     * Utility filter function that returns FALSE;
+     *
+     * @since 3.8
+     */
+    function wprss_disable() {
+        return FALSE;
+    }
