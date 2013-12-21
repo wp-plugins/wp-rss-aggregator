@@ -9,7 +9,6 @@ Stable tag: 3.9.1
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
-
 == Description ==
 
 WP RSS Aggregator is the most comprehensive and elegant RSS feed solution for WordPress.
