@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 3.9.2
+    Version: 3.9.3
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,11 +29,11 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   3.9.2
+     * @version   3.9.3
      * @since     1.0
-     * @author    Jean Galea <info@wprssaggregator.com>
+     * @author    Jean Galea <info@jeangalea.com>
      * @copyright Copyright (c) 2012-2013, Jean Galea
-     * @link      http://www.wprssaggregator.com
+     * @link      http://www.wpmayor.com/
      * @license   http://www.gnu.org/licenses/gpl.html
      */
 
@@ -43,7 +43,7 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '3.9.2', true );
+        define( 'WPRSS_VERSION', '3.9.3', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
@@ -186,7 +186,7 @@
      * @since 3.6
      */
     function wprss_check_tracking_notice( $pointers ){
-        $settings = get_option( 'wprss_settings_general' );
+        $settings = get_option( 'wprss_settings_general', array( 'tracking' => '' ) );
         $wprss_tracking = ( isset( $settings['tracking'] ) )? $settings['tracking'] : '';
 
         if ( $wprss_tracking === '' ) {

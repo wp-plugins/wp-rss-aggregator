@@ -60,7 +60,15 @@
 		// If the old version is less than the new version, run the update.		
 		elseif ( intval( $old_db_version ) < intval( WPRSS_DB_VERSION ) ) {
 			wprss_update();
-			wprss_fetch_insert_all_feed_items(); 
+			wprss_fetch_insert_all_feed_items();
+
+			// NO FOLLOW CHANGE FIX
+			$options = get_option( 'wprss_settings_general' );
+			if ( $options['follow_dd'] === __( "No Follow", 'wprss' ) ) {
+				$options['follow_dd'] = 'no_follow';
+			} elseif ( $options['follow_dd'] === __( "Follow", 'wprss' ) ) {
+				$options['follow_dd'] = 'follow';
+			}
 		}
 		
 	}
@@ -185,7 +193,7 @@
 			array(
 				// from version 1.1
 				'open_dd' 					=> __( 'New window' ),
-				'follow_dd' 				=> __( 'No follow' ),
+				'follow_dd' 				=> 'no_follow',
 				
 				// from version 2.0
 				'feed_limit'				=> 15, 
@@ -196,13 +204,49 @@
 				'cron_interval' 			=> 'hourly',
 				'styles_disable'    		=> 0,
 				'title_link'				=> 1,
+				'title_limit'				=> '',
 				'source_enable'     		=> 1,
 				'text_preceding_source' 	=> 'Source:',
 				'date_enable'				=> 1,
 				'text_preceding_date' 		=> 'Published on',
+
+				// from version 3.1
+				'limit_feed_items_imported' => 200,
+
+				// from version 3.3
+				'custom_feed_url'			=> 'wprss',
+				'custom_feed_limit'			=> '',
+				'source_link'				=> 0,
+				
+				// from version 3.4
+				'video_link'				=> 'false',
+
+				// from version 3.8
+				'limit_feed_items_age'		=> '',
+				'limit_feed_items_age_unit'	=> 'days',
+
+				// tracking
+				'tracking'					=> 0,
 			)			
 		);
 
 		// Return the default settings
 		return $settings;
+	}
+
+
+
+	/**
+	 * Returns the default tracking settings.
+	 * 
+	 * @since 3.6
+	 */
+	function wprss_get_default_tracking_settings() {
+		return apply_filters(
+			'wprss_default_tracking_settings',
+			array(
+				'use_presstrends'				=>	'false',
+				'tracking_notice'				=>	''
+			)
+		);
 	}

@@ -21,7 +21,8 @@
         global $pagenow, $typenow;
         if ( empty( $typenow ) && !empty( $_GET['post'] ) ) {
           $post = get_post( $_GET['post'] );
-          $typenow = $post->post_type;
+          if ( $post !== NULL && !is_wp_error( $post ) )
+            $typenow = $post->post_type;
         }
         $notices_settings = get_option( 'wprss_settings_notices' ); 
 
@@ -42,8 +43,8 @@
 
         $html = '<div id="ajax-notification" class="updated">';
             $html .= '<p>';
-                $html .= __( 'If you like this RSS Aggregator plugin, please <a target="_blank" href="http://wordpress.org/support/view/plugin-reviews/wp-rss-aggregator">give it a good rating and leave a review</a>. Your feedback will help me improve this plugin further. Thank you. <a href="javascript:;" 
-                    id="dismiss-ajax-notification" style="float:right;">Dismiss this notification</a>', 'wprss' );
+            $html .= __( 'Did you know that you can get more RSS features? Excerpts, thumbnails, keyword filtering, importing into posts and more... Check out the <a target="_blank" href="http://www.wprssaggregator.com/extensions"><strong>extensions</strong></a> page.
+                     <a href="javascript:;" id="dismiss-ajax-notification" style="float:right;">Dismiss this notification</a>', 'wprss' );
             $html .= '</p>';
             $html .= '<span id="ajax-notification-nonce" class="hidden">' . wp_create_nonce( 'ajax-notification-nonce' ) . '</span>';
         $html .= '</div><!-- /.updated -->';
@@ -75,4 +76,76 @@
                 die( '0' );
             }             
         }        
-    } 
+    }
+
+
+
+    /**
+     * Checks if the addon notices option exists in the database, and creates it
+     * if it does not.
+     * 
+     * @return The addon notices option
+     * @since 3.4.2
+     */
+    function wprss_check_addon_notice_option() {
+        $option = get_option( 'wprss_addon_notices' );
+        if ( $option === FALSE ) {
+            update_option( 'wprss_addon_notices', array() );
+            return array();
+        }
+        return $option;
+    }
+
+
+
+    /**
+     * This function is called through AJAX to dismiss a particular addon notification.
+     * 
+     * @since 3.4.2
+     */
+    function wprss_dismiss_addon_notice() {
+        $addon = ( isset( $_POST['addon'] ) === TRUE )? $_POST['addon'] : null;
+        if ( $addon === null ) {
+            echo 'false';
+            die();
+        }
+        $notice = ( isset( $_POST['notice'] ) === TRUE )? $_POST['notice'] : null;
+        if ( $notice === null ){
+            echo 'false';
+            die();
+        }
+
+        $notices = wprss_check_addon_notice_option();
+        if ( isset( $notices[$addon] ) === FALSE ) {
+            $notices[$addon] = array();
+        }
+        if ( isset( $notices[$addon][$addon] ) === FALSE ) {
+            $notices[$addon][$notice] = '1';
+        }
+        update_option( 'wprss_addon_notices', $notices );
+        echo 'true';
+
+        die();
+    }
+
+    add_action( 'wp_ajax_wprss_dismiss_addon_notice', 'wprss_dismiss_addon_notice' );
+
+
+
+
+    /**
+     * AJAX action for the tracking pointer
+     * 
+     * @since 3.6
+     */
+    function wprss_tracking_ajax_opt() {
+        if ( isset( $_POST['opted'] ) ){
+            $opted = $_POST['opted'];
+            $settings = get_option( 'wprss_settings_general' );
+            $settings['tracking'] = $opted;
+            update_option( 'wprss_settings_general', $settings );
+        }
+        die();
+    }
+
+    add_action( 'wp_ajax_wprss_tracking_ajax_opt', 'wprss_tracking_ajax_opt' );

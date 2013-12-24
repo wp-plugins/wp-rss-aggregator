@@ -18,17 +18,26 @@
             'post_submit_meta_box',                 // $callback
             'wprss_feed',                           // $page
             'side',                                 // $context
-            'low'                                   // $priority
+            'high'                                   // $priority
         );
 
         add_meta_box(
-            'custom_meta_box', 
-            __( 'Feed Source Details', 'wprss' ), 
-            'wprss_show_meta_box_callback', 
+            'preview_meta_box', 
+            __( 'Feed Preview', 'wprss' ), 
+            'wprss_preview_meta_box_callback', 
             'wprss_feed', 
-            'normal', 
+            'side', 
             'high'
-        );         
+        );
+
+         add_meta_box(
+            'wprss-feed-processing-meta', 
+            __( 'Feed Processing', 'wprss' ), 
+            'wprss_feed_processing_meta_box_callback', 
+            'wprss_feed', 
+            'side', 
+            'high'
+        );
 
         add_meta_box(
             'wprss-help-meta',
@@ -41,7 +50,7 @@
 
         add_meta_box(
             'wprss-like-meta',
-            __( 'Like this plugin?', 'wprss' ),
+            __( 'Like This Plugin?', 'wprss' ),
             'wprss_like_meta_box_callback',
             'wprss_feed',
             'side',
@@ -50,21 +59,24 @@
 
         add_meta_box(
             'wprss-follow-meta',
-            __( 'Follow us', 'wprss' ),
+            __( 'Follow Us', 'wprss' ),
             'wprss_follow_meta_box_callback',
             'wprss_feed',
             'side',
             'low'
         );   
 
+        
         add_meta_box(
-            'preview_meta_box', 
-            __( 'Feed Preview', 'wprss' ), 
-            'wprss_preview_meta_box_callback', 
+            'custom_meta_box', 
+            __( 'Feed Source Details', 'wprss' ), 
+            'wprss_show_meta_box_callback', 
             'wprss_feed', 
             'normal', 
-            'low'
-        ); 
+            'high'
+        );
+
+        
     } 
 
 
@@ -84,13 +96,20 @@
             'type'  => 'text'
         );
         
-        $wprss_meta_fields[' description' ] = array(
+        $wprss_meta_fields[ 'description' ] = array(
             'label' => __( 'Description', 'wprss' ),
             'desc'  => __( 'A short description about this feed source (optional)', 'wprss' ),
             'id'    => $prefix .'description',
             'type'  => 'textarea'
         );    
-        
+
+        $wprss_meta_fields[ 'limit' ] = array(
+            'label' => __( 'Limit', 'wprss' ),
+            'desc'  => __( 'Enter a feed item import/display limit. Leave blank to use the default setting.', 'wprss' ),
+            'id'    => $prefix . 'limit',
+            'type'  => 'number'
+        );
+
         // for extensibility, allows more meta fields to be added
         return apply_filters( 'wprss_fields', $wprss_meta_fields );
     }
@@ -109,7 +128,7 @@
         wp_nonce_field( basename( __FILE__ ), 'wprss_meta_box_nonce' ); 
 
             // Begin the field table and loop
-            echo '<table class="form-table">';
+            echo '<table class="form-table wprss-form-table">';
 
             foreach ( $meta_fields as $field ) {
 
@@ -149,6 +168,13 @@
                                 echo '</select><br><span class="description">'.$field['desc'].'</span>';
                             break;                                            
                         
+                            // number
+                            case 'number':
+                                echo '<input class="wprss-number-roller" type="number" placeholder="Default" min="0" name="'.$field['id'].'" id="'.$field['id'].'" value="'.esc_attr( $meta ).'" />
+                                    <label for="'.$field['id'].'"><span class="description">'.$field['desc'].'</span></label>';
+
+                            break;
+
                         } //end switch
                 echo '</td></tr>';
             } // end foreach
@@ -192,6 +218,11 @@
         if ( defined( 'DOING_CRON' ) && DOING_CRON )
             return;        
         
+        // Change the limit, if it is zero, to an empty string
+        if ( isset( $_POST['wprss_limit'] ) && strval( $_POST['wprss_limit'] ) == '0' ) {
+            $_POST['wprss_limit'] = '';
+        }
+
         // loop through fields and save the data
         foreach ( $meta_fields as $field ) {
             $old = get_post_meta( $post_id, $field[ 'id' ], true );
@@ -202,6 +233,38 @@
                 delete_post_meta( $post_id, $field[ 'id' ], $old );
             }
         } // end foreach
+
+        $state = ( isset( $_POST['wprss_state'] ) )? $_POST['wprss_state'] : 'active';
+        $activate = ( isset( $_POST['wprss_activate_feed'] ) )? stripslashes( $_POST['wprss_activate_feed'] ) : '';
+        $pause = ( isset( $_POST['wprss_pause_feed'] ) )? stripslashes( $_POST['wprss_pause_feed'] ) : '';
+        $age_limit = ( isset( $_POST['wprss_age_limit'] ) )? stripslashes( $_POST['wprss_age_limit'] ) : '';
+        $age_unit = ( isset( $_POST['wprss_age_unit'] ) )? stripslashes( $_POST['wprss_age_unit'] ) : '';
+        $update_interval = ( isset( $_POST['wprss_update_interval'] ) )? stripslashes( $_POST['wprss_update_interval'] ) : wprss_get_default_feed_source_update_interval();
+        $old_update_interval = get_post_meta( $post_id, 'wprss_update_interval', TRUE );
+
+        // Update the feed source meta
+        update_post_meta( $post_id, 'wprss_activate_feed', $activate );
+        update_post_meta( $post_id, 'wprss_pause_feed', $pause );
+        update_post_meta( $post_id, 'wprss_age_limit', $age_limit );
+        update_post_meta( $post_id, 'wprss_age_unit', $age_unit );
+        update_post_meta( $post_id, 'wprss_update_interval', $update_interval );
+
+        // Check if the state or the update interval has changed
+        if ( get_post_meta( $post_id, 'wprss_state', TRUE ) !== $state || $old_update_interval !== $update_interval ) {
+            // Pause the feed source, and if it is active, re-activate it.
+            // This should update the feed's scheduling
+            wprss_pause_feed_source( $post_id );
+            if ( $state === 'active' )
+                wprss_activate_feed_source( $post_id );
+        }
+
+        // Update the schedules
+        wprss_update_feed_processing_schedules( $post_id );
+
+        // If the feed source uses the global updating system, update the feed on publish
+        if ( $update_interval === wprss_get_default_feed_source_update_interval() ) {
+            wp_schedule_single_event( time(), 'wprss_fetch_single_feed_hook', array( $post_id ) );
+        }
     } 
 
 
@@ -251,18 +314,177 @@
     }
 
 
+
+    /**
+     * Renders the Feed Processing metabox
+     * 
+     * @since 3.7
+     */
+    function wprss_feed_processing_meta_box_callback() {
+        global $post;
+        // Get the post meta
+        $state = get_post_meta( $post->ID, 'wprss_state', TRUE );
+        $activate = get_post_meta( $post->ID, 'wprss_activate_feed', TRUE );
+        $pause = get_post_meta( $post->ID, 'wprss_pause_feed', TRUE );
+        $update_interval = get_post_meta( $post->ID, 'wprss_update_interval', TRUE );
+
+        $age_limit = get_post_meta( $post->ID, 'wprss_age_limit', FALSE );
+        $age_unit = get_post_meta( $post->ID, 'wprss_age_unit', FALSE );
+
+        $age_limit = ( count( $age_limit ) === 0 )? wprss_get_general_setting( 'limit_feed_items_age' ) : $age_limit[0];
+        $age_unit = ( count( $age_unit ) === 0 )? wprss_get_general_setting( 'limit_feed_items_age_unit' ) : $age_unit[0];
+
+        // Set default strings for activate and pause times
+        $default_activate = 'immediately';
+        $default_pause = 'never';
+
+        // Prepare the states
+        $states = array(
+            'active'    =>  __( 'Active', 'wprss' ),
+            'paused'    =>  __( 'Paused', 'wprss' ),
+        );
+
+        // Prepare the schedules
+        $default_interval = __( 'Default', 'wprss' );
+        $wprss_schedules = apply_filters( 'wprss_schedules', wprss_get_schedules() );
+        $default_interval_key = wprss_get_default_feed_source_update_interval();
+        $schedules = array_merge(
+            array(
+                $default_interval_key => array(
+                    'display'   =>  $default_interval,
+                    'interval'  =>  $default_interval,
+                ),
+            ),
+            $wprss_schedules
+        );
+
+        ?>
+
+        <div class="wprss-meta-side-setting">
+            <label for="wprss_state">Feed state:</label>
+            <select id="wprss_state" name="wprss_state">
+                <?php foreach( $states as $value => $label ) : ?>
+                    <option value="<?php echo $value; ?>" <?php selected( $state, $value ) ?> ><?php echo $label; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="wprss-meta-side-setting">
+            <p>
+                <label for="">Activate feed: </label>
+                <strong id="wprss-activate-feed-viewer"><?php echo ( ( $activate !== '' )? $activate : $default_activate ); ?></strong>
+                <a href="#">Edit</a>
+            </p>
+            <div class="wprss-meta-slider" data-collapse-viewer="wprss-activate-feed-viewer" data-default-value="<?php echo $default_activate; ?>">
+                <input id="wprss_activate_feed" class="wprss-datetimepicker-from-today" name="wprss_activate_feed" value="<?php echo $activate; ?>" />
+
+                <label class="description" for="wprss_activate_feed">
+                    Leave blank to activate the feed immediately.
+                </label>
+
+                <br/><br/>
+
+                <span class="description">
+                    <b>Note:</b> WordPress uses UTC time for schedules, not local time. Current UTC time is: <code><?php echo date( 'd/m/Y H:i:s', current_time('timestamp',1) ); ?></code>
+                </span>
+            </div>
+        </div>
+
+        <div class="wprss-meta-side-setting">
+            <p>
+                <label for="">Pause feed: </label>
+                <strong id="wprss-pause-feed-viewer"><?php echo ( ( $pause !== '' )? $pause : $default_pause ); ?></strong>
+                <a href="#">Edit</a>
+            </p>
+            <div class="wprss-meta-slider" data-collapse-viewer="wprss-pause-feed-viewer" data-default-value="<?php echo $default_pause; ?>">
+                <input id="wprss_pause_feed" class="wprss-datetimepicker-from-today" name="wprss_pause_feed" value="<?php echo $pause; ?>" />
+                <label class="description" for="wprss_pause_feed">
+                    Leave blank to never pause the feed.
+                </label>
+                <br/><br/>
+                <span class="description">
+                    <b>Note:</b> WordPress uses UTC time for schedules, not local time. Current UTC time is: <code><?php echo date( 'd/m/Y H:i:s', current_time('timestamp',1) ); ?></code>
+                </span>
+            </div>
+        </div>
+
+
+        <div class="wprss-meta-side-setting">
+            <p>
+                <label for="">Update interval: </label>
+                <strong id="wprss-feed-update-interval-viewer">
+                    <?php
+                        if ( $update_interval === '' || $update_interval === wprss_get_default_feed_source_update_interval() ) {
+                            echo $default_interval;
+                        }
+                        else {
+                            echo wprss_interval( $schedules[$update_interval]['interval'] );
+                        }
+                    ?>
+                </strong>
+                <a href="#">Edit</a>
+            </p>
+            <div class="wprss-meta-slider" data-collapse-viewer="wprss-feed-update-interval-viewer" data-default-value="<?php echo $default_interval; ?>">
+                <select id="feed-update-interval" name="wprss_update_interval">
+                <?php foreach ( $schedules as $value => $schedule ) : ?>
+                    <?php $text = ( $value === wprss_get_default_feed_source_update_interval() )? $default_interval : wprss_interval( $schedule['interval'] ); ?>
+                    <option value="<?php echo $value; ?>" <?php selected( $update_interval, $value ); ?> ><?php echo $text; ?></option>
+                <?php endforeach; ?>
+                </select>
+                
+                <br/>
+                <span class='description' for='feed-update-interval'>
+                    Enter the interval at which to update this feed. The feed will only be updated if it is <strong>active</strong>.
+                </span>
+            </div>
+        </div>
+
+
+        <div class="wprss-meta-side-setting">
+            <p>
+                <label id="wprss-age-limit-feed-label" for="" data-when-empty="Delete old feed items:">Delete feed items older than: </label>
+                <strong id="wprss-age-limit-feed-viewer"><?php echo $age_limit . ' ' . $age_unit; ?></strong>
+                <a href="#">Edit</a>
+            </p>
+            <div class="wprss-meta-slider" data-collapse-viewer="wprss-age-limit-feed-viewer" data-label="#wprss-age-limit-feed-label" data-default-value="" data-empty-controller="#limit-feed-items-age" data-hybrid="#limit-feed-items-age, #limit-feed-items-age-unit">
+                <input id="limit-feed-items-age" name="wprss_age_limit" type="number" min="0" class="wprss-number-roller" placeholder="No limit" value="<?php echo $age_limit; ?>" />
+
+                <select id="limit-feed-items-age-unit" name="wprss_age_unit">
+                <?php foreach ( wprss_age_limit_units() as $unit ) : ?>
+                    <option value="<?php echo $unit; ?>" <?php selected( $age_unit, $unit ); ?> ><?php echo $unit; ?></option>
+                <?php endforeach; ?>
+                </select>
+                
+                <br/>
+                <span class='description' for='limit-feed-items-age'>
+                    Enter the maximum age of feed items to be stored in the database. Feed items older than the specified age will be deleted everyday at midnight.
+                    <br/>
+                    Leave empty for no limit.
+                </span>
+            </div>
+        </div>
+
+        <?php
+    }
+
+
+
     /**     
      * Generate Help meta box
      * 
      * @since 2.0
      * 
      */      
-    function wprss_help_meta_box_callback() {
+    function wprss_help_meta_box_callback() {        
+       echo '<p><a href="http://www.wprssaggregator.com/documentation/">View the documentation</p>';
        echo '<p><strong>';
        _e( 'Need help?', 'wprss' );
        echo '</strong> <a target="_blank" href="http://wordpress.org/support/plugin/wp-rss-aggregator">';
        _e( 'Check out the support forum', 'wprss' ); 
        echo '</a></p>';
+       echo '</strong> <a target="_blank" href="http://www.wprssaggregator.com/feature-requests/">';       
+       _e( 'Suggest a new feature', 'wprss' ); 
+       echo '</a></p>';       
     }
 
     /**     
@@ -272,17 +494,27 @@
      * 
      */      
     function wprss_like_meta_box_callback() { ?>
-        <p><?php _e( 'Why not do any or all of the following', 'wprss' ) ?>:</p>
+        
         <ul>
-            <li><a href="http://wordpress.org/extend/plugins/wp-rss-aggregator/"><?php _e( 'Give it a 5 star rating on WordPress.org.', 'wprss' ) ?></a></li>                               
-            <li class="donate_link"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X9GP6BL4BLXBJ"><?php _e('Donate a token of your appreciation.', 'wprss' ); ?></a></li>
+            <li><a href="http://wordpress.org/extend/plugins/wp-rss-aggregator/"><?php _e( 'Give it a 5 star rating on WordPress.org', 'wprss' ) ?></a></li>                               
+            <li class="donate_link"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X9GP6BL4BLXBJ"><?php _e('Donate a token of your appreciation', 'wprss' ); ?></a></li>
         </ul>       
+        <?php
+        echo '<p><strong>'; 
+        _e( 'Check out the Premium Extensions:', 'wprss' );
+        echo '</strong>'; ?>
+        <ul>
+            <li><a href="http://www.wprssaggregator.com/extension/feed-to-post/"><?php echo 'Feed to Post'; ?></a></li>                                         
+            <li><a href="http://www.wprssaggregator.com/extension/excerpts-thumbnails/"><?php echo 'Excerpts & Thumbnails'; ?></a></li>                               
+            <li><a href="http://www.wprssaggregator.com/extension/categories/"><?php echo 'Categories'; ?></a></li>
+            <li><a href="http://www.wprssaggregator.com/extension/keyword-filtering/"><?php echo 'Keyword Filtering'; ?></a></li>
+        </ul>   
          </p>
     <?php } 
 
 
     /**     
-     * Generate Like this plugin meta box
+     * Generate Follow us plugin meta box
      * 
      * @since 2.0
      * 
@@ -309,7 +541,8 @@
         remove_meta_box( 'postpsp', 'wprss_feed' ,'normal' );
         remove_meta_box( 'su_postmeta', 'wprss_feed' ,'normal' );
         remove_meta_box( 'woothemes-settings', 'wprss_feed' ,'normal' ); 
-        remove_meta_box( 'wpcf-post-relationship', 'wprss_feed' ,'normal' );                 
+        remove_meta_box( 'wpcf-post-relationship', 'wprss_feed' ,'normal' );  
+        remove_meta_box( 'wpar_plugin_meta_box ', 'wprss_feed' ,'normal' );                      
         remove_meta_box( 'sharing_meta', 'wprss_feed' ,'advanced' );
         remove_meta_box( 'content-permissions-meta-box', 'wprss_feed' ,'advanced' );       
         remove_meta_box( 'theme-layouts-post-meta-box', 'wprss_feed' ,'side' );
