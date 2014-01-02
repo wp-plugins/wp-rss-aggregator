@@ -2,9 +2,9 @@
     /*
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
-    Description: Imports and aggregates multiple RSS Feeds using SimplePie
+    Description: Imports and aggregates multiple RSS Feeds
     Version: 3.9.5
-    Author: Jean Pierre Galea
+    Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
