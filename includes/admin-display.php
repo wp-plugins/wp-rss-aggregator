@@ -71,14 +71,16 @@
         case 'next-update':
             $interval = get_post_meta( $post_id, 'wprss_update_interval', TRUE );
             $timestamp = wprss_get_next_feed_source_update( $post_id );
+            // If using the global interval, get the timestamp of the next glboal update
+            if ( $interval === wprss_get_default_feed_source_update_interval() || $interval === '' ) {
+              $timestamp = wp_next_scheduled( 'wprss_fetch_all_feeds_hook', array() );
+            }
             ?>
 
             <p>
                 <code>
                     <?php if ( ! wprss_is_feed_source_active( $post_id ) ): ?>
                         Paused
-                    <?php elseif ( $interval === wprss_get_default_feed_source_update_interval() || $interval === '' ) : ?>
-                        Using global interval
                     <?php elseif ( $timestamp === FALSE ) : ?>
                         None
                     <?php else: ?>
@@ -173,7 +175,9 @@
                 break;         
             
             case "publishdate":
-                $publishdate = date( 'Y-m-d H:i:s', get_post_meta( get_the_ID(), 'wprss_item_date', true ) ) ;          
+                $item_date = get_post_meta( get_the_ID(), 'wprss_item_date', true );
+                $item_date = ( $item_date === '' )? date('U') : $item_date;
+                $publishdate = date( 'Y-m-d H:i:s', $item_date ) ;          
                 echo $publishdate;
                 break;   
             
@@ -274,7 +278,7 @@
             if ( get_post_status( get_the_ID() ) !== 'trash' ) {
                 $actions[ 'fetch' ] = '<a href="javascript:;" class="wprss_ajax_action" pid="'. get_the_ID() .'" purl="'.home_url().'/wp-admin/admin-ajax.php" title="'. esc_attr( __( 'Fetch Feeds', 'wprss' ) ) .'" >' . __( 'Fetch Feeds', 'wprss' ) . '</a>';
 
-                $purge_feeds_row_action_text = apply_filters( 'wprss_purge_feeds_row_action_text ', 'Delete feed items' );
+                $purge_feeds_row_action_text = apply_filters( 'wprss_purge_feeds_row_action_text ', 'Delete Feed Items' );
                 $purge_feeds_row_action_title = apply_filters( 'wprss_purge_feeds_row_action_title ', 'Delete feed items imported by this feed source' );
                 $actions['purge-posts'] = "<a href='".admin_url("edit.php?post_type=wprss_feed&purge-feed-items=" . get_the_ID() ) . "' title='" . __( $purge_feeds_row_action_title, 'wprss' ) . "' >" . __( $purge_feeds_row_action_text, 'wprss' ) . "</a>";
             }
