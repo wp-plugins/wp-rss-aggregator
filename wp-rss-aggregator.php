@@ -4,7 +4,7 @@
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
     Version: 3.9.5
-    Author: Jean Galea
+    Author: Jean Pierre Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
