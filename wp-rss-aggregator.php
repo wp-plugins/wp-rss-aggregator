@@ -2,8 +2,8 @@
     /*
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
-    Description: Imports and aggregates multiple RSS Feeds
-    Version: 3.9.5
+    Description: Imports and aggregates multiple RSS Feeds using SimplePie
+    Version: 3.9.6
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -11,7 +11,7 @@
     */
 
     /*  
-    Copyright 2012-2013 Jean Galea (email : info@jeangalea.com)
+    Copyright 2012-2014 Jean Galea (email : info@jeangalea.com)
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -29,7 +29,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   3.9.5
+     * @version   3.9.6
      * @since     1.0
      * @author    Jean Galea <info@jeangalea.com>
      * @copyright Copyright (c) 2012-2013, Jean Galea
@@ -43,7 +43,7 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '3.9.5', true );
+        define( 'WPRSS_VERSION', '3.9.6', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
@@ -80,6 +80,10 @@
     // Set the constant path to the plugin's includes directory. 
     if( !defined( 'WPRSS_INC' ) )
         define( 'WPRSS_INC', WPRSS_DIR . trailingslashit( 'includes' ), true );
+
+    // Set the constant path to the plugin's log file.
+    if( !defined( 'WPRSS_LOG_FILE' ) )
+        define( 'WPRSS_LOG_FILE', WPRSS_DIR . 'log.txt', true );
     
 
     /**
@@ -160,6 +164,9 @@
     // require_once ( WPRSS_INC . 'libraries/WP_Logging.php' );   
 
     require_once ( WPRSS_INC . 'admin-editor.php' );
+
+    // Load the logging functions file
+    require_once ( WPRSS_INC . 'admin-log.php' );
 
     
     register_activation_hook( __FILE__ , 'wprss_activate' );
