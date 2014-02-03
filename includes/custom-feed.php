@@ -110,7 +110,7 @@
         header('Expires: 0'); // Proxies.
         echo '<?xml version="1.0" encoding="' . get_option('blog_charset') . '"?' . '>';
         ?>
-        <feed xmlns="http://www.w3.org/2005/Atom">
+        <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" >
             <title type="text">Latest imported feed items on <?php bloginfo_rss('name'); ?></title>
             <?php
             // Start the Loop
@@ -124,6 +124,7 @@
                 <!--<link href="<?php the_permalink_rss(); ?>" />-->
                 <published><?php echo get_post_time( 'Y-m-d\TH:i:s\Z' ); ?></published>
                 <content type="html"><![CDATA[<?php the_content(); ?>]]></content>
+                <?php do_action( 'wprss_custom_feed_entry', get_the_ID() ); ?>
             </entry>
             <?php
             // End of the Loop
