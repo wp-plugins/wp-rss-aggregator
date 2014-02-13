@@ -1,0 +1,18 @@
+[12-02-2014 20:52:50] WPRSS > wprss_get_feed_items:
+                      Failed to fetch feed ""
+
+[12-02-2014 21:47:51] WPRSS > image_obeys_minimum_size:
+                      Failed to get image dimensions. Image may not exist at http://distilleryimage6.ak.instagram.com/44286a44942f11e3be190a8fc0c85626_8.jpg
+[12-02-2014 22:08:26] WPRSS > image_obeys_minimum_size:
+                      Failed to get image dimensions. Image may not exist at http://i.imgur.com/lJDfUrJ.png
+[12-02-2014 22:08:26] WPRSS > image_obeys_minimum_size:
+                      Failed to get image dimensions. Image may not exist at http://freelance-coding.com/themes/glamour-nightclub/glamour_nightclub.png
+[12-02-2014 22:08:26] WPRSS > image_obeys_minimum_size:
+                      Failed to get image dimensions. Image may not exist at http://freelance-coding.com/themes/glamour-nightclub/features.png
+[12-02-2014 22:08:26] WPRSS > image_obeys_minimum_size:
+                      Failed to get image dimensions. Image may not exist at http://1.s3.envato.com/files/62014681/PRINTSCREENS/02_HOME-sidebar.jpg
+[12-02-2014 22:08:26] WPRSS > image_obeys_minimum_size:
+                      Failed to get image dimensions. Image may not exist at http://1.s3.envato.com/files/62014681/PRINTSCREENS/04_EVENT-list.jpg
+[12-02-2014 22:08:26] WPRSS > image_obeys_minimum_size:
+                      Failed to get image dimensions. Image may not exist at http://2.s3.envato.com/files/62014681/PRINTSCREENS/06_EVENT.jpg
+
