@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 4.0.3
+    Version: 4.0.4
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,7 +29,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   4.0.3
+     * @version   4.0.4
      * @since     1.0
      * @author    Jean Galea <info@jeangalea.com>
      * @copyright Copyright (c) 2012-2013, Jean Galea
@@ -43,7 +43,7 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '4.0.3', true );
+        define( 'WPRSS_VERSION', '4.0.4', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
@@ -83,7 +83,9 @@
 
     // Set the constant path to the plugin's log file.
     if( !defined( 'WPRSS_LOG_FILE' ) )
-        define( 'WPRSS_LOG_FILE', WPRSS_DIR . 'log.txt', true );
+        define( 'WPRSS_LOG_FILE', WPRSS_DIR . 'log', true );
+    if( !defined( 'WPRSS_LOG_FILE_EXT' ) )
+        define( 'WPRSS_LOG_FILE_EXT', '.txt', true );
     
 
     /**
@@ -179,14 +181,19 @@
     register_deactivation_hook( __FILE__ , 'wprss_deactivate' );
 
 
-    add_action( 'init', 'wprss_init' );     
+    add_action( 'init', 'wprss_init' );
     /**
      * Initialise the plugin
      *
      * @since  1.0
      * @return void
      */     
-    function wprss_init() {                    
+    function wprss_init() {
+        //If user requested to download system info, generate the download.
+        if ( isset( $_POST['wprss-sysinfo'] ) ) {
+            do_action( 'wprss_download_sysinfo' );
+        }
+
         do_action( 'wprss_init' );
     }
 
