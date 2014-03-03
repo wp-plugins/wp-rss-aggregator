@@ -322,7 +322,7 @@
         $feed_url = get_post_meta( $post->ID, 'wprss_url', true );
         
         if( ! empty( $feed_url ) ) {             
-            $feed = fetch_feed( $feed_url ); 
+            $feed = wprss_fetch_feed( $feed_url ); 
             if ( ! is_wp_error( $feed ) ) {
                 $items = $feed->get_items();        
                 // Figure out how many total items there are, but limit it to 5. 
@@ -330,7 +330,7 @@
 
                 // Build an array of all the items, starting with element 0 (first element).
                 $items = $feed->get_items( 0, $maxitems );  
-                echo '<h4>Latest 5 feeds available from ' . get_the_title() . '</h4>'; 
+                echo '<h4>Latest 5 feed items available from ' . get_the_title() . '</h4>';
                 echo '<ul>';
                 foreach ( $items as $item ) { 
                     // Get human date (comment if you want to use non human date)
