@@ -5,7 +5,7 @@ Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, autoblog aggregator, rss import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, rss multi importer, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.8.1
-Stable tag: 4.0.8
+Stable tag: 4.0.9
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
@@ -71,7 +71,9 @@ WP RSS Aggregator uses the SimplePie class to import and handle feeds, and store
 Italian - Davide De Maestri
 
 = Reviewed On =
+* [WP Kube](http://www.wpkube.com/wp-rss-aggregator-wordpress-review/)
 * [Kikolani](http://kikolani.com/create-latest-posts-portfolio-page-wp-rss-aggregator.html) 
+* [WP Eka](www.wpeka.com/wp-rss-aggregators-plugin.html)
 * [IndexWP](www.indexwp.com/wp-rss-aggregator-plugin-review/)
 * [WPulsar](http://www.wpulsar.com/wp-rss-aggregator-plugin-feed-to-posts-keyword-filtering-review/)
 * [Kevin Muldoon](http://www.kevinmuldoon.com/wp-rss-aggregator-wordpress-plugin/)
@@ -134,6 +136,10 @@ You can do that with the [Feed to Post](http://www.wprssaggregator.com/extension
 
 Yes, within the [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to-post) add-on we have an advanced feature that can get the full content of those feeds that only supply a short excerpt.
 
+= Where can I find the documentation for the plugin? =
+
+The full documentation section can be found on the [WP RSS Aggregator website](www.wprssaggregator.com/documentation/), the documentation also includes an extensive FAQ list.
+
 
 == Screenshots ==
 
@@ -149,6 +155,10 @@ Yes, within the [Feed to Post](http://www.wprssaggregator.com/extensions/feed-to
 
 
 == Changelog ==
+
+= 4.0.9 (2014-03-27) =
+* Enhanced: Added a filter to modify the feeds template.
+* Fixed bug: Nested lists in feeds template.
 
 = 4.0.8 (2014-03-20) =
 * Fixed bug: Using the shortcode makes the comments section always open.
