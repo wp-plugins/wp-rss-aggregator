@@ -5,7 +5,7 @@ Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, autoblog aggregator, rss import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, rss multi importer, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.8.1
-Stable tag: 4.0.9
+Stable tag: 4.1
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
@@ -70,9 +70,12 @@ WP RSS Aggregator uses the SimplePie class to import and handle feeds, and store
 = Translations =
 Italian - Davide De Maestri
 
-= Reviewed On =
+= As featured on =
+* [WP Beginner] (http://www.wpbeginner.com/plugins/how-to-fetch-feeds-in-wordpress-using-wp-rss-aggregator/)
 * [WP Kube](http://www.wpkube.com/wp-rss-aggregator-wordpress-review/)
+* [Torquemag](http://torquemag.io/wp-rss-aggregator-review-do-more-with-rss-feeds/)
 * [Kikolani](http://kikolani.com/create-latest-posts-portfolio-page-wp-rss-aggregator.html) 
+* [ManageWP Plugins of the Month](http://managewp.com/free-wordpress-plugins-march-2014)
 * [WP Eka](www.wpeka.com/wp-rss-aggregators-plugin.html)
 * [IndexWP](www.indexwp.com/wp-rss-aggregator-plugin-review/)
 * [WPulsar](http://www.wpulsar.com/wp-rss-aggregator-plugin-feed-to-posts-keyword-filtering-review/)
@@ -155,6 +158,10 @@ The full documentation section can be found on the [WP RSS Aggregator website](w
 
 
 == Changelog ==
+
+= 4.1 (2014-04-03) =
+* New Feature: Feed items can now link to enclosure links in the feed.
+* Enhanced: Added a filter to allow add-ons to modify feed item queries.
 
 = 4.0.9 (2014-03-27) =
 * Enhanced: Added a filter to modify the feeds template.

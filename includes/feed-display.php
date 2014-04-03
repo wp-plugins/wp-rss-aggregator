@@ -174,7 +174,9 @@
             while ( $feed_items->have_posts() ) {
                 $feed_items->the_post();
                 $permalink       = get_post_meta( get_the_ID(), 'wprss_item_permalink', true );
+                $enclosure       = get_post_meta( get_the_ID(), 'wprss_item_enclosure', true );
                 $feed_source_id  = get_post_meta( get_the_ID(), 'wprss_feed_id', true );
+                $link_enclosure  = get_post_meta( $feed_source_id, 'wprss_enclosure', true );
                 $source_name     = get_the_title( $feed_source_id );
                 $source_url      = get_post_meta( $feed_source_id, 'wprss_site_url', true );
                 // Fallback for feeds created with older versions of the plugin
@@ -189,7 +191,11 @@
                 $date = date_i18n( $general_settings['date_format'], $timestamp );
 
                 if ( $general_settings['title_link'] == 1 ) {
-                    $output .= "$link_before" . '<a ' . $display_settings['open'] . ' ' . $display_settings['follow'] . ' href="'. $permalink . '">'. get_the_title(). '</a>';
+                    $feed_item_title_link = $permalink;
+                    if ( $link_enclosure === 'true' && $enclosure !== '' ) {
+                        $feed_item_title_link = $enclosure;
+                    }
+                    $output .= "$link_before" . '<a ' . $display_settings['open'] . ' ' . $display_settings['follow'] . ' href="'. $feed_item_title_link . '">'. get_the_title(). '</a>';
                 }
                 else {
                     $output .= "$link_before" . get_the_title();
@@ -318,6 +324,8 @@
 		elseif ( isset( $args['exclude'] ) ) {
 			$query_args['exclude'] = $args['exclude'];
 		}
+
+        $query_args = apply_filters( 'wprss_process_shortcode_args', $query_args, $args );
 
 		$feed_items = wprss_get_feed_items_query( $query_args );
 

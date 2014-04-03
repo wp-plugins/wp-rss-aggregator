@@ -111,6 +111,13 @@
             'type'  => 'number'
         );
 
+        $wprss_meta_fields[ 'enclosure' ] = array(
+            'label' => __( 'Link to enclosure', 'wprss' ),
+            'desc'  => __( 'Check this box to link the feed item title to the enclosure link in the feed.', 'wprss' ),
+            'id'    => $prefix . 'enclosure',
+            'type'  => 'checkbox'
+        );
+
         // for extensibility, allows more meta fields to be added
         return apply_filters( 'wprss_fields', $wprss_meta_fields );
     }
@@ -159,7 +166,8 @@
                         
                             // checkbox
                             case 'checkbox':
-                                echo '<input type="checkbox" name="'.$field['id'].'" id="'.$field['id'].'" ', esc_attr( $meta ) ? ' checked="checked"' : '','/>
+                                echo '<input type="hidden" name="'.$field['id'].'" value="false" />';
+                                echo '<input type="checkbox" name="'.$field['id'].'" id="'.$field['id'].'" value="true" ', checked( $meta, 'true' ), ' />
                                     <label for="'.$field['id'].'">'.$field['desc'].'</label>';
                             break;    
                         
