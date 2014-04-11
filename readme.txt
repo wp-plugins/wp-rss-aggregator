@@ -5,7 +5,7 @@ Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, autoblog aggregator, rss import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, rss multi importer, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.8.1
-Stable tag: 4.1
+Stable tag: 4.1.1
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
@@ -69,9 +69,11 @@ WP RSS Aggregator uses the SimplePie class to import and handle feeds, and store
 
 = Translations =
 Italian - Davide De Maestri
+Spanish - Andrew Kurtis
 
 = As featured on =
 * [WP Beginner] (http://www.wpbeginner.com/plugins/how-to-fetch-feeds-in-wordpress-using-wp-rss-aggregator/)
+* [WPEXplorer] (http://www.wpexplorer.com/custom-rss-aggregator-plugin/)
 * [WP Kube](http://www.wpkube.com/wp-rss-aggregator-wordpress-review/)
 * [Torquemag](http://torquemag.io/wp-rss-aggregator-review-do-more-with-rss-feeds/)
 * [Kikolani](http://kikolani.com/create-latest-posts-portfolio-page-wp-rss-aggregator.html) 
@@ -158,6 +160,10 @@ The full documentation section can be found on the [WP RSS Aggregator website](w
 
 
 == Changelog ==
+
+= 4.1.1 (2014-04-09) =
+* Enhanced: Tracking notices only appear for admin users.
+* Fixed bug: Auto Feed Discovery was not working.
 
 = 4.1 (2014-04-03) =
 * New Feature: Feed items can now link to enclosure links in the feed.

@@ -191,7 +191,8 @@
             wprss_system_info(); ?>
         </div>
     <?php
-    }           
+    }       
+
 
     /**
      * Output admin notice that feeds have been updated successfully
