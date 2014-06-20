@@ -58,11 +58,8 @@
 				$new_items = array();
 				foreach( $items as $item ) {
 					$permalink = $item->get_permalink();
-					if ( !in_array( $permalink, $existing_permalinks ) ) {
-						if ( ! is_array( $new_items ) ) {
-							$new_items = array();
-						}
-						$new_items = array_push( $new_items, $item );
+					if ( !in_array( trim($permalink), $existing_permalinks ) ) {
+						$new_items[] = $item;
 					}
 				}
 
@@ -95,6 +92,8 @@
 			if ( !empty( $items_to_insert ) ) {
 				wprss_items_insert_post( $items_to_insert, $feed_ID );
 			}
+		} else {
+			wprss_log("The feed URL is not valid! Please recheck.");
 		}
 	}
 
@@ -190,10 +189,13 @@
 
 		// Convert the feed error into a WP_Error, if applicable
 		if ( $feed->error() ) {
+			if ( $source !== NULL ) {
+				update_post_meta( $source, "wprss_error_last_import", "true" );
+			}
 			return new WP_Error( 'simplepie-error', $feed->error() );
 		}
-
-		// If no error, return the feed
+		// If no error, return the feed and remove any error meta
+		delete_post_meta( $source, "wprss_error_last_import" );
 		return $feed;
 	}
 
@@ -328,6 +330,7 @@
 						$existing_permalinks[] = $permalink;
 					}
 					else {
+						update_post_meta( $source, "wprss_error_last_import", "true" );
 						wprss_log_obj( 'Failed to insert post', $feed_item, 'wprss_items_insert_post > wp_insert_post' );
 					}
 				}
