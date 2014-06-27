@@ -4,8 +4,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, rss to post, autoblog aggregator, rss import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, rss multi importer, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblogging, autoblogger
 Requires at least: 3.3
-Tested up to: 3.8.1
-Stable tag: 4.1.5
+Tested up to: 3.9.1
+Stable tag: 4.1.6
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
@@ -79,6 +79,7 @@ WP RSS Aggregator uses the SimplePie class to import and handle feeds, and store
 * [MyWPExpert](http://www.mywpexpert.com/wordpress-rss-aggregator-plugin)
 * [Kikolani](http://kikolani.com/create-latest-posts-portfolio-page-wp-rss-aggregator.html) 
 * [ManageWP Plugins of the Month](http://managewp.com/free-wordpress-plugins-march-2014)
+* [TidyRepo](http://tidyrepo.com/wp-rss-aggregator/)
 * [WP Eka](http://www.wpeka.com/wp-rss-aggregators-plugin.html)
 * [IndexWP](www.indexwp.com/wp-rss-aggregator-plugin-review/)
 * [WPulsar](http://www.wpulsar.com/wp-rss-aggregator-plugin-feed-to-posts-keyword-filtering-review/)
@@ -162,7 +163,11 @@ The full documentation section can be found on the [WP RSS Aggregator website](w
 
 == Changelog ==
 
-= 4.1.5 (2014-05-19) =
+= 4.1.6 (2014-06-28) = 
+* Fixed bug: Results returned by wprss_get_feed_items_for_source() will no longer be affected by filters.
+* Fixed bug: Charset issue in titles
+
+= 4.1.5 (2014-06-19) =
 * Enhanced: The Feed Sources table now indicates which feed sources encountered errors during the last import.
 * Fixed bug: Feed titles were not being decoded for HTML entities.
 
