@@ -100,6 +100,7 @@
 										<li><strong><a href="http://www.wprssaggregator.com/extension/excerpts-thumbnails/"  target="wprss_et">Excerpts &amp; Thumbnails</a></strong></li>
 										<li><strong><a href="http://www.wprssaggregator.com/extension/categories/" target="wprss_cat">Categories</a></strong></li>
 										<li><strong><a href="http://www.wprssaggregator.com/extension/keyword-filtering/" target="wprss_kf">Keyword Filtering</a></strong></li>
+										<li><strong><a href="http://www.wprssaggregator.com/extension/wordai/" target="wprss_ai">WordAi</a></strong></li>
 									</ul>
 								</p>
 								<p>More information about add-ons can be found on our website <a href="http://www.wprssaggregator.com">www.wprssaggregator.com</a></p>
@@ -108,17 +109,10 @@
 
 		 						<h3>Changelog for v<?php echo WPRSS_VERSION; ?></h3>
 		 						<ul>
-									<li><strong>Enhanced:</strong> Feed Sources page is now more responsive.</li>
+									<li><strong>Enhanced:</strong> Improved live updating performace on the Feed Sources page.</li>
+									<li><strong>Enhanced:</strong> Facebook page feeds are now changed into RSS 2.0 feeds, rather than Atom 1.0 feeds.</li>
 		 						</ul>
-		 
-								<h3>Changelog for v4.2</h3>
-								<ul>
-									<li><strong>New Feature:</strong> Can now view each feed source's imported feed items separate from other feed sources' feed items.</li>
-									<li><strong>Enhanced:</strong> Major visual update to the Feed Sources page with new live updates.</li>
-									<li><strong>Enhanced:</strong> The custom feed now includes the feed source.</li>
-									<li><strong>Fixed bug:</strong> Google News feeds were importing duplicate items on every update.</li>
-									<li><strong>Fixed bug:</strong> Multiple minor bug fixes with old filters.</li>
-								</ul>
+		 						
 								<p>Need functionality not already available in core or the add-ons? You can <a href="http://www.wprssaggregator.com/feature-requests/">suggest new features</a>!</p>
 
 							</div>
