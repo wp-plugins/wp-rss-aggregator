@@ -1,0 +1,400 @@
+[17-07-2014 13:32:41] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://www.fitforblogging.com/wp-content/uploads/fcc0c0b273d95abff3d48ba2_1280_rich-e1405526541809.jpg. Got:  
+[17-07-2014 13:32:41] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://www.fitforblogging.com/wp-content/uploads/how-to-easily-delete-your-online-accounts-accountkiller.com_-750x389.png. Got:  
+[17-07-2014 13:32:42] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://www.fitforblogging.com/wp-content/uploads/paypal_logo-e1401795047844.jpg. Got:  
+[17-07-2014 13:32:42] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://www.fitforblogging.com/wp-content/uploads/Tax-rates-online-KPMG-GLOBAL.png. Got:  
+[17-07-2014 13:32:43] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://www.fitforblogging.com/wp-content/uploads/1password-750x442.png. Got:  
+
+[17-07-2014 13:50:51] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==. Got:  
+[17-07-2014 13:50:51] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==. Got:  
+[17-07-2014 13:50:51] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==. Got:  
+[17-07-2014 13:50:54] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==. Got:  
+
+[19-07-2014 16:57:32] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 16:57:34] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 16:57:35] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 16:57:35] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 16:57:39] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 16:57:40] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 16:57:40] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 16:57:40] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 16:57:56] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 16:57:57] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 16:57:57] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 16:57:57] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 16:58:19] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 16:58:20] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 16:58:21] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 16:58:21] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+
+[19-07-2014 17:51:54] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 17:51:55] WPRSS:
+Full text service responded with:: A valid key must be supplied
+
+[19-07-2014 17:53:54] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 17:53:54] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 17:54:25] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 17:54:25] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 17:54:41] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 17:54:41] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 17:54:42] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 17:54:42] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 17:54:47] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 17:54:48] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 17:54:48] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 17:54:48] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+
+[19-07-2014 20:24:53] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 20:24:54] WPRSS:
+Full text service responded with:: A valid key must be supplied
+
+[19-07-2014 20:25:53] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 20:25:54] WPRSS:
+Full text service responded with:: A valid key must be supplied
+
+[19-07-2014 20:27:53] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 20:27:54] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 20:27:55] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 20:27:55] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 20:27:59] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 20:28:00] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 20:28:00] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 20:28:00] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+
+[19-07-2014 21:55:16] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 21:55:17] WPRSS:
+Full text service responded with:: A valid key must be supplied
+
+[19-07-2014 21:57:16] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 21:57:19] WPRSS:
+Full text service responded with:: A valid key must be supplied
+
+[19-07-2014 21:59:16] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 21:59:17] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 21:59:47] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 21:59:47] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 21:59:53] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 21:59:54] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 21:59:54] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 21:59:54] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+
+[19-07-2014 22:53:10] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 22:53:11] WPRSS:
+Full text service responded with:: A valid key must be supplied
+
+[19-07-2014 22:54:11] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 22:54:12] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 22:54:13] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 22:54:13] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 22:54:35] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 22:54:36] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 22:54:37] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 22:54:37] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[19-07-2014 22:54:43] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 22:54:44] WPRSS:
+Full text service responded with:: A valid key must be supplied
+[19-07-2014 22:54:44] WPRSS:
+Full text service responded with:: <html><body><h1>503 Service Unavailable</h1>
+No server is available to handle this request.
+</body></html>
+
+[19-07-2014 22:54:44] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+
+[22-07-2014 13:11:01] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+
+[22-07-2014 13:12:33] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://dhvcform.getextension.net/wp-content/uploads/2014/07/drag-drop.png. Got:  
+[22-07-2014 13:12:35] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://dhvcform.getextension.net/wp-content/uploads/2014/07/Screen-Shot-2014-07-17-at-9.13.09-PM.png. Got:  
+[22-07-2014 13:12:35] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://dhvcform.getextension.net/wp-content/uploads/2014/07/any-theme_small.png. Got:  
+
+[22-07-2014 13:14:31] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://dhvcform.getextension.net/wp-content/uploads/2014/07/drag-drop.png. Got:  
+[22-07-2014 13:14:31] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://dhvcform.getextension.net/wp-content/uploads/2014/07/Screen-Shot-2014-07-17-at-9.13.09-PM.png. Got:  
+[22-07-2014 13:14:33] WPRSS > image_obeys_minimum_size:
+Failed to get image dimensions. Image may not exist at http://dhvcform.getextension.net/wp-content/uploads/2014/07/any-theme_small.png. Got:  
+
+[22-07-2014 16:42:51] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[22-07-2014 16:42:51] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "http://codecanyon.net/feeds/new-wordpress-slash-add-ons-items.atom". cURL error 6: Couldn't resolve host 'codecanyon.net'
+
+[22-07-2014 20:44:32] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[22-07-2014 20:44:33] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "http://codecanyon.net/feeds/new-wordpress-slash-add-ons-items.atom". cURL error 6: Couldn't resolve host 'codecanyon.net'
+
+[23-07-2014 07:35:07] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[23-07-2014 07:35:08] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "http://codecanyon.net/feeds/new-wordpress-slash-add-ons-items.atom". cURL error 6: Couldn't resolve host 'codecanyon.net'
+
+[23-07-2014 10:46:41] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[23-07-2014 10:46:41] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "http://codecanyon.net/feeds/new-wordpress-slash-add-ons-items.atom". cURL error 6: Couldn't resolve host 'codecanyon.net'
+
+[23-07-2014 20:21:02] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[23-07-2014 20:21:02] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "http://codecanyon.net/feeds/new-wordpress-slash-add-ons-items.atom". cURL error 6: Couldn't resolve host 'codecanyon.net'
+
+[24-07-2014 07:32:38] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[24-07-2014 07:32:38] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "http://codecanyon.net/feeds/new-wordpress-slash-add-ons-items.atom". cURL error 6: Couldn't resolve host 'codecanyon.net'
+
+[24-07-2014 07:32:43] WPRSS > check_force_full_content:
+Failed to find a working full text rss service.
+[24-07-2014 07:32:43] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "http://codecanyon.net/feeds/new-wordpress-slash-add-ons-items.atom". cURL error 6: Couldn't resolve host 'codecanyon.net'
+
+[05-08-2014 21:43:03] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcSm0ksxyjnsGAJuJBCvvfbfWuOdqfBejsMbGqbiLOhDUTU5onaMkAkAukejSVgb-9wWu5MG-xY" for post #2959: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:04] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcSm0ksxyjnsGAJuJBCvvfbfWuOdqfBejsMbGqbiLOhDUTU5onaMkAkAukejSVgb-9wWu5MG-xY" for post #2959: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:05] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcTWKDMMnYbcKNOdK0stkbX3hU_cHlQ7Ucvj5x9oPxqHeP-LWLkrOfFZv1dFe9KmJMzBGFfpjFI" for post #2962: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:05] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcTWKDMMnYbcKNOdK0stkbX3hU_cHlQ7Ucvj5x9oPxqHeP-LWLkrOfFZv1dFe9KmJMzBGFfpjFI" for post #2962: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:07] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTC7Esyefovax3GpuboL3uzFqDheizyYdF5FK0S2Sy2IAgfCEi31Rb3sVGsBDbfWswZyrhnjo8" for post #2965: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:07] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTC7Esyefovax3GpuboL3uzFqDheizyYdF5FK0S2Sy2IAgfCEi31Rb3sVGsBDbfWswZyrhnjo8" for post #2965: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:08] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcT0-NcIdTsJl9XqobjjZnLxIekdo-tT3-0gvvUFZxDBztdg1b5bURp0LNm8mLimsMONcRyTCBxP" for post #2968: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:08] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcT0-NcIdTsJl9XqobjjZnLxIekdo-tT3-0gvvUFZxDBztdg1b5bURp0LNm8mLimsMONcRyTCBxP" for post #2968: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:09] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcSD3uNnu6hgx732lS8FZbYkRUPsVNAMmix1BnWOtMKvTkNP8aNUnuVGzTmLJv6ky7r_FV0sQ4Q0" for post #2971: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:09] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcSD3uNnu6hgx732lS8FZbYkRUPsVNAMmix1BnWOtMKvTkNP8aNUnuVGzTmLJv6ky7r_FV0sQ4Q0" for post #2971: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:10] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTcH22t6akVFeXYcFVu8yh9Su2TR6wWcxKOgp-8APiaBdCsFts0NDCVJzDc80L40CyBJ1HgN4Y" for post #2974: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:10] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTcH22t6akVFeXYcFVu8yh9Su2TR6wWcxKOgp-8APiaBdCsFts0NDCVJzDc80L40CyBJ1HgN4Y" for post #2974: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:11] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t3.gstatic.com/images?q=tbn:ANd9GcR5ura2eenBxvijGpDzmXIts01K_twkovV3JaSF0R7IuzoxTa8FYpGRILMUhaITGAe8IE0N3yo" for post #2977: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:12] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t3.gstatic.com/images?q=tbn:ANd9GcR5ura2eenBxvijGpDzmXIts01K_twkovV3JaSF0R7IuzoxTa8FYpGRILMUhaITGAe8IE0N3yo" for post #2977: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:12] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcTu8vX9ZyhDVO0AF7_aaDNvT_vBTyi_bATw1EvEuYrOxVEAsZF3AcFl4WxbdLoFK0SwtX4tB2LZ" for post #2980: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:13] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcTu8vX9ZyhDVO0AF7_aaDNvT_vBTyi_bATw1EvEuYrOxVEAsZF3AcFl4WxbdLoFK0SwtX4tB2LZ" for post #2980: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:13] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcSxz38xIdolSruOFaphSWZJjcgFvwSwmqsFEgKd1pUoHAGccsFVN5Hfg6ucSkzFAHpAfGqeOkk" for post #2983: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:14] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcSxz38xIdolSruOFaphSWZJjcgFvwSwmqsFEgKd1pUoHAGccsFVN5Hfg6ucSkzFAHpAfGqeOkk" for post #2983: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:14] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcRD5lSdioWmXnAjRhv4TFdqx1e8LI8vlFhyeWXac6o6rTNBF77hBEr1kEEDqPzOXkFU6G7fWVnY" for post #2986: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:43:15] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcRD5lSdioWmXnAjRhv4TFdqx1e8LI8vlFhyeWXac6o6rTNBF77hBEr1kEEDqPzOXkFU6G7fWVnY" for post #2986: Sorry, this file type is not permitted for security reasons.
+
+[05-08-2014 21:50:19] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTTzH7UD3tlk-r9maYzmCq-DsxKOl2Grn1CEp2_C2eCsQS_-wNUmZoDrvU1cR2Lsbx-aZRt6rQi" for post #2989: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 21:50:20] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTTzH7UD3tlk-r9maYzmCq-DsxKOl2Grn1CEp2_C2eCsQS_-wNUmZoDrvU1cR2Lsbx-aZRt6rQi" for post #2989: Sorry, this file type is not permitted for security reasons.
+
+[05-08-2014 22:53:46] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcScYCppbiCgr3gBqm1amCu0YZLbEq8AzeARDhqVDbVfYaFvhHq1b6qN0o5bYaH-UvsUV9SX_WxV" for post #3020: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:47] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcScYCppbiCgr3gBqm1amCu0YZLbEq8AzeARDhqVDbVfYaFvhHq1b6qN0o5bYaH-UvsUV9SX_WxV" for post #3020: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:47] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcTZcTDPjF3MlNHkmmXnRXtXocPPOBhH7T9GquruOUL7rNoQr-P1v-Of6ALG4RIl7MNT5Me-_qY" for post #3023: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:47] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcTZcTDPjF3MlNHkmmXnRXtXocPPOBhH7T9GquruOUL7rNoQr-P1v-Of6ALG4RIl7MNT5Me-_qY" for post #3023: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:48] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcQh_LbYSAXKmI1J0iyNzjJE1Lk3ECCTywjEoNpAFVJx1MtKHo4kyk6vc4CAiuHjHFjKuH_maPk" for post #3026: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:49] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcQh_LbYSAXKmI1J0iyNzjJE1Lk3ECCTywjEoNpAFVJx1MtKHo4kyk6vc4CAiuHjHFjKuH_maPk" for post #3026: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:49] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcReM1d5kDZxngJNhlqbTKokWuIRmYPlOEV8AqNo4reuVet7z_EqYS24YuNY5kI2PEBLMV26FAVy" for post #3029: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:50] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcReM1d5kDZxngJNhlqbTKokWuIRmYPlOEV8AqNo4reuVet7z_EqYS24YuNY5kI2PEBLMV26FAVy" for post #3029: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:51] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t3.gstatic.com/images?q=tbn:ANd9GcTFjV1ZiayUMaeZm_imqj8ItO9Wn-xsUy34yxBo7f_M45hg-7tQb1cdL3gib4fmjZQWy1AJJGs" for post #3032: Sorry, this file type is not permitted for security reasons.
+[05-08-2014 22:53:51] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t3.gstatic.com/images?q=tbn:ANd9GcTFjV1ZiayUMaeZm_imqj8ItO9Wn-xsUy34yxBo7f_M45hg-7tQb1cdL3gib4fmjZQWy1AJJGs" for post #3032: Sorry, this file type is not permitted for security reasons.
+
+[06-08-2014 09:25:27] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTTzH7UD3tlk-r9maYzmCq-DsxKOl2Grn1CEp2_C2eCsQS_-wNUmZoDrvU1cR2Lsbx-aZRt6rQi" for post #3035: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:28] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTTzH7UD3tlk-r9maYzmCq-DsxKOl2Grn1CEp2_C2eCsQS_-wNUmZoDrvU1cR2Lsbx-aZRt6rQi" for post #3035: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:29] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcSil1_PXK23gbeaqnhItNILeCSq4R_zw_2Mch-tE7QkwJu_JOxikYMk8T2kd3neWHXxGlWZxHpT" for post #3038: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:29] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcSil1_PXK23gbeaqnhItNILeCSq4R_zw_2Mch-tE7QkwJu_JOxikYMk8T2kd3neWHXxGlWZxHpT" for post #3038: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:30] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t3.gstatic.com/images?q=tbn:ANd9GcQdw7EgWrz1-k1MrCaic5X1-ccfhMIfS-gNocpXAHauYe37JR3WpuDzXIooyIp3HBA2jOQlvLL0" for post #3041: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:30] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t3.gstatic.com/images?q=tbn:ANd9GcQdw7EgWrz1-k1MrCaic5X1-ccfhMIfS-gNocpXAHauYe37JR3WpuDzXIooyIp3HBA2jOQlvLL0" for post #3041: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:31] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcQ97YxGPmF640MU9m051V7FQXwVdph9rFIK4HbM_ddgnieZdc5IzQFVA7Tr9EBHfk_SvVnuSTw" for post #3044: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:31] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcQ97YxGPmF640MU9m051V7FQXwVdph9rFIK4HbM_ddgnieZdc5IzQFVA7Tr9EBHfk_SvVnuSTw" for post #3044: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:32] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcS1OrS1KO5sRrJd287ZnkUUHWCqfDVw4ogj3GMLvAwLGR8JUBcHXVaSdyVsJZftr5cXpYcN50Zj" for post #3047: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:32] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcS1OrS1KO5sRrJd287ZnkUUHWCqfDVw4ogj3GMLvAwLGR8JUBcHXVaSdyVsJZftr5cXpYcN50Zj" for post #3047: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:32] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcTUvNB-MmZjBiYfJ8H7n7XDn5Y76Btm14ZVxlk1JHag0PNHBUXZMfEfVfw_rJnwDIe2IsSmCW6w" for post #3050: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:33] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcTUvNB-MmZjBiYfJ8H7n7XDn5Y76Btm14ZVxlk1JHag0PNHBUXZMfEfVfw_rJnwDIe2IsSmCW6w" for post #3050: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:33] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcSleYXItGaz480G1qS6Fcfc_4Iwt9ep5ceOjpokx930sZ8znJlIdKLU9u2wYzrm8K11RDfdQi_g" for post #3053: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:34] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcSleYXItGaz480G1qS6Fcfc_4Iwt9ep5ceOjpokx930sZ8znJlIdKLU9u2wYzrm8K11RDfdQi_g" for post #3053: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:34] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcQz3dUAe6mN5NF35T4Ku0-opVEoOq7r4wms-JVDauf9NECfjXOFPwcP8pjfcjpMtCcX8pI62O5J" for post #3056: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:25:34] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcQz3dUAe6mN5NF35T4Ku0-opVEoOq7r4wms-JVDauf9NECfjXOFPwcP8pjfcjpMtCcX8pI62O5J" for post #3056: Sorry, this file type is not permitted for security reasons.
+
+[06-08-2014 09:53:29] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcSil1_PXK23gbeaqnhItNILeCSq4R_zw_2Mch-tE7QkwJu_JOxikYMk8T2kd3neWHXxGlWZxHpT" for post #3059: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:53:29] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcSil1_PXK23gbeaqnhItNILeCSq4R_zw_2Mch-tE7QkwJu_JOxikYMk8T2kd3neWHXxGlWZxHpT" for post #3059: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:53:30] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcQYMGBmWItwX0l6qINpufZOMDBCFyTAt3BHHaxTHh4uH8FBJxFGSAkm-kfF7a5OQqu4e1wC_Ss" for post #3062: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:53:31] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcQYMGBmWItwX0l6qINpufZOMDBCFyTAt3BHHaxTHh4uH8FBJxFGSAkm-kfF7a5OQqu4e1wC_Ss" for post #3062: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:53:32] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTM-2izIrJ8yHBNRWdQxCXS7nFFMgwDas2TJ9i6KY7r3BUNKzUdoTL_S9Vhf5fBa8Dm-sz8VtqB" for post #3068: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 09:53:33] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTM-2izIrJ8yHBNRWdQxCXS7nFFMgwDas2TJ9i6KY7r3BUNKzUdoTL_S9Vhf5fBa8Dm-sz8VtqB" for post #3068: Sorry, this file type is not permitted for security reasons.
+
+[06-08-2014 10:53:05] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcS6eTW2SKwYHOEySVysobJhFFVL2rPMR5hkTsnaC7yl8zgvATYwkb3s0QoK0l2SzEgCZ0X173M" for post #3071: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 10:53:05] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcS6eTW2SKwYHOEySVysobJhFFVL2rPMR5hkTsnaC7yl8zgvATYwkb3s0QoK0l2SzEgCZ0X173M" for post #3071: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 10:53:07] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t3.gstatic.com/images?q=tbn:ANd9GcRn1WEIEWFlHsAav0ZQKlX9vx4Kui0Mej87BJSjL-6LADtNqHlhOrK0sLhMdo_MNqJoB-Xx-Wv-" for post #3074: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 10:53:07] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t3.gstatic.com/images?q=tbn:ANd9GcRn1WEIEWFlHsAav0ZQKlX9vx4Kui0Mej87BJSjL-6LADtNqHlhOrK0sLhMdo_MNqJoB-Xx-Wv-" for post #3074: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 10:53:08] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcS8j8yHAbh9d9pe9tGouTejFqkM7a470Xq84rLVQIQC7dNSMZLF8SsT2P1NSNxjX0vc92lGrOxK" for post #3077: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 10:53:09] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcS8j8yHAbh9d9pe9tGouTejFqkM7a470Xq84rLVQIQC7dNSMZLF8SsT2P1NSNxjX0vc92lGrOxK" for post #3077: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 10:53:10] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcTu8vX9ZyhDVO0AF7_aaDNvT_vBTyi_bATw1EvEuYrOxVEAsZF3AcFl4WxbdLoFK0SwtX4tB2LZ" for post #3080: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 10:53:11] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t1.gstatic.com/images?q=tbn:ANd9GcTu8vX9ZyhDVO0AF7_aaDNvT_vBTyi_bATw1EvEuYrOxVEAsZF3AcFl4WxbdLoFK0SwtX4tB2LZ" for post #3080: Sorry, this file type is not permitted for security reasons.
+
+[06-08-2014 11:51:18] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTUUl22oIrVOLi5x71lHblovCmePnBYEhXc2YZfL1y7GSy6G6Sb0rD-gN0ebuJySMsVmWwUjP2v" for post #3107: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 11:51:19] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t0.gstatic.com/images?q=tbn:ANd9GcTUUl22oIrVOLi5x71lHblovCmePnBYEhXc2YZfL1y7GSy6G6Sb0rD-gN0ebuJySMsVmWwUjP2v" for post #3107: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 11:51:19] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcSD3uNnu6hgx732lS8FZbYkRUPsVNAMmix1BnWOtMKvTkNP8aNUnuVGzTmLJv6ky7r_FV0sQ4Q0" for post #3110: Sorry, this file type is not permitted for security reasons.
+[06-08-2014 11:51:20] WPRSS > wprss_ftp_media_sideload_image:
+Error downloading image "http://t2.gstatic.com/images?q=tbn:ANd9GcSD3uNnu6hgx732lS8FZbYkRUPsVNAMmix1BnWOtMKvTkNP8aNUnuVGzTmLJv6ky7r_FV0sQ4Q0" for post #3110: Sorry, this file type is not permitted for security reasons.
+
