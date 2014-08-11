@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 4.3.1
+    Version: 4.4
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,7 +29,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   4.3.1
+     * @version   4.4
      * @since     1.0
      * @author    Jean Galea <info@jeangalea.com>
      * @copyright Copyright (c) 2012-2014, Jean Galea
@@ -43,7 +43,7 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '4.3.1', true );
+        define( 'WPRSS_VERSION', '4.4', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
@@ -109,6 +109,9 @@
 
     /* Load the feed processing functions file */
     require_once ( WPRSS_INC . 'feed-processing.php' );
+	
+	/* Load the blacklist functions file */
+    require_once ( WPRSS_INC . 'feed-blacklist.php' );
 
     /* Load the feed importing functions file */
     require_once ( WPRSS_INC . 'feed-importing.php' );
@@ -375,6 +378,17 @@
             // Sets a transient to trigger a redirect upon completion of activation procedure
             set_transient( '_wprss_activation_redirect', true, 30 );
         }
+		
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		// check for plugin using plugin name
+		if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+			$wpseo_titles = get_option('wpseo_titles', array());
+			if ( isset( $wpseo_titles['hideeditbox-wprss_feed'] ) ) {
+				$wpseo_titles['hideeditbox-wprss_feed'] = TRUE;
+				$wpseo_titles['hideeditbox-wprss_feed_item'] = TRUE;
+			}
+			update_option( 'wpseo_titles', $wpseo_titles );
+		} 
     }    
 
 
