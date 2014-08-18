@@ -41,13 +41,7 @@
                     'redirect'  =>  'edit.php?post_type=wprss_feed&page=wprss-debugging&debug_message=2',
                     'render'    =>  'wprss_debug_reimport_feeds',
                 ),
-				
-				'reset-settings' => array(
-					'nonce'     =>  'wprss-reset-settings',
-                    'run'       =>  'wprss_reset_settings',
-                    'redirect'  =>  'edit.php?post_type=wprss_feed&page=wprss-debugging&debug_message=4',
-                    'render'    =>  'wprss_debug_reset_settings',
-				),
+
             )
         );
 
@@ -60,6 +54,17 @@
                 'render'    =>  'wprss_debug_clear_log_button'
             )
         );
+
+		$operations ['restore-settings'] = apply_filters(
+			'wprss_debug_restore_settings_operation',
+			array(
+				'nonce'     =>  'wprss-restore-settings',
+				'run'       =>  'wprss_restore_settings',
+				'redirect'  =>  'edit.php?post_type=wprss_feed&page=wprss-debugging&debug_message=4',
+				'render'    =>  'wprss_debug_restore_settings',
+				'pos'		=>	'bottom'
+			)
+		);
 
         return $operations;
     }
@@ -96,7 +101,7 @@
     function wprss_debug_update_feeds() {
         ?>
         <h3><?php _e( 'Update All Feeds Now', 'wprss' ); ?></h3>
-        <p><?php _e( 'Click the blue button to update all feed items now. This will check all feed sources for any new feed items.', 'wprss' ); ?>
+        <p><?php _e( 'Click the blue button to update all active feed items now. This will check all feed sources for any new feed items.', 'wprss' ); ?>
             <br><?php _e( 'Existing feed items will not be modified.', 'wprss' ); ?>
         </p>
         <p><?php _e( '<strong>Note:</strong> This might take more than a few seconds if you have many feed sources.', 'wprss' ); ?></p>            
@@ -133,20 +138,20 @@
 
 
 	/**
-     * Render the reset settings button
+     * Render the restore settings button
      * 
      * @since 4.4
      */
-    function wprss_debug_reset_settings() {
+    function wprss_debug_restore_settings() {
         ?>
-        <h3><?php _e( 'Reset Default Settings', 'wprss' ); ?></h3>
+        <h3><?php _e( 'Restore Default Settings', 'wprss' ); ?></h3>
         <p><?php _e( 'Click the red button to reset the plugin settings to default.', 'wprss' ); ?></p>
         <p><?php _e( '<em><strong>Note:</strong> This cannot be undone. Once the settings have been reset, your old settings cannot be restored.</em>', 'wprss' ); ?></p>
         
         <form action="edit.php?post_type=wprss_feed&page=wprss-debugging" method="post"> 
             
-                <?php wp_nonce_field( 'wprss-reset-settings' );
-                submit_button( __( 'Reset Default Settings', 'wprss' ), 'button-red', 'reset-settings', true  ); ?>            
+                <?php wp_nonce_field( 'wprss-restore-settings' );
+                submit_button( __( 'Restore Default Settings', 'wprss' ), 'button-red', 'restore-settings', true  ); ?>            
             
         </form>
         <?php
@@ -209,15 +214,30 @@
 
             do_action( 'wprss_debugging_before' );
 
+			$bottom = array();
             $debug_operations = wprss_get_debug_operations();
             foreach( $debug_operations as $id => $data ) {
-                if ( isset( $data['render'] ) )
+                if ( !isset( $data['render'] ) ) continue;
+				$pos = isset( $data['pos'] ) ? $data['pos'] : 'normal';
+				if ( $pos == 'normal' ) {
                     call_user_func( $data['render'] );
+				} elseif( $pos == 'bottom' ) {
+					$bottom[$id] = $data;
+				}
             }
 
             do_action( 'wprss_debugging_after' );
 
-            wprss_system_info(); ?>
+            wprss_system_info();
+			
+			if ( count($bottom) > 0 ) {
+				foreach( $bottom as $id => $data ) {
+					if ( !isset( $data['render'] ) ) continue;
+					call_user_func( $data['render'] );
+				}
+			}
+			
+			?>
         </div>
     <?php
     }       
@@ -258,7 +278,7 @@
      * @since 4.4
      */ 
     function wprss_debugging_admin_notice_reset_settings() {        
-        echo '<div class="updated"><p>The plugin settings have been reset.</p></div>';
+        echo '<div class="updated"><p>The plugin settings have been reset to default.</p></div>';
     }
 
 
@@ -267,13 +287,13 @@
 	 * 
 	 * @since 4.4
 	 */
-	function wprss_reset_settings() {
+	function wprss_restore_settings() {
 		// Action Hook
-		do_action( 'wprss_before_reset_settings' );
+		do_action( 'wprss_before_restore_settings' );
 		
 		// Prepare the settings to reset
-		$settings_to_reset = apply_filters(
-			'wprss_settings_to_reset',
+		$settings_to_restore = apply_filters(
+			'wprss_settings_to_restore',
 			array(
 				'wprss_settings_general',
 				'wprss_settings_notices',
@@ -283,10 +303,10 @@
 			)
 		);
 		// Delete the settings
-		foreach( $settings_to_reset as $setting ) {
+		foreach( $settings_to_restore as $setting ) {
 			delete_option( $setting );
 		}
 		
 		// Action Hook
-		do_action( 'wprss_after_reset_settings' );
+		do_action( 'wprss_after_restore_settings' );
 	}

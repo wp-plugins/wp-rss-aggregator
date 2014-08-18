@@ -1,11 +1,11 @@
 === WP RSS Aggregator ===
-Contributors: jeangalea, wprssaggregator, mekku, xedin.unknown
+Contributors: jeangalea, wprssaggregator, Mekku, xedin.unknown
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X9GP6BL4BLXBJ
 Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, rss to post, autoblog aggregator, rss import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, rss multi importer, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblogging, autoblogger
 Requires at least: 3.3
 Tested up to: 3.9.1
-Stable tag: 4.4
+Stable tag: 4.4.1
 License: GPLv2 or later
 Imports and aggregates multiple RSS Feeds using SimplePie. Outputs feeds sorted by date (latest first).
 
@@ -51,7 +51,8 @@ Add-Ons that add more functionality to the core plugin are [available for purcha
 * [Keyword Filtering](http://www.wprssaggregator.com/extensions/keyword-filtering) - filter imported feeds based on keywords, so you only get items you're interested in.
 * [Excerpts & Thumbnails](http://www.wprssaggregator.com/extensions/excerpts-thumbnails) - display excerpts and thumbnails together with the title, date and source.
 * [Categories](http://www.wprssaggregator.com/extensions/categories) - categorise your feed sources and display items from a particular category at will within your site.
-* [WordAi](http://www.wprssaggregator.com/extension/wordai/) - WordAi allows users to take an RSS feed and turn it into new content that is both completely unique and completely readable..
+* [WordAi](http://www.wprssaggregator.com/extension/wordai/) - WordAi allows users to take an RSS feed and turn it into new content that is both completely unique and completely readable.
+* [Full Text RSS Feeds](http://www.wprssaggregator.com/extension/full-text-rss-feeds/) - connectivity to our Full Text Premium service, which gives you unlimited feed items returned per feed source.
 
 = Demo =
 The core plugin can be seen in use on the [demo page](http://www.wprssaggregator.com/demo/).
@@ -161,6 +162,12 @@ The full documentation section can be found on the [WP RSS Aggregator website](w
 
 
 == Changelog ==
+
+= 4.4.1 (2014-08-18) =
+* Enhanced: Various improvements to the plugin interface and texts.
+* Enhanced: Moved the restore default settings button farther down the Debugging page, to avoid confusion with the delete button.
+* Fixed bug: Feed item dates were not being adjusted to the timezone when using a GMT offset.
+* Fixed bug: Feed item dates are now adjusted according to daylight savings time.
 
 = 4.4 (2014-08-11) =
 * New Feature: Blacklist - delete items and blacklist them to never import them again.
