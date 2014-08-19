@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 4.4.3
+    Version: 4.4.4
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,11 +29,11 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   4.4.3
+     * @version   4.4.4
      * @since     1.0
-     * @author    Jean Galea <info@jeangalea.com>
+     * @author    Jean Galea <info@wprssaggregator.com>
      * @copyright Copyright (c) 2012-2014, Jean Galea
-     * @link      http://www.wpmayor.com/
+     * @link      http://www.wprssaggregator.com/
      * @license   http://www.gnu.org/licenses/gpl.html
      */
 
@@ -43,7 +43,7 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '4.4.3', true );
+        define( 'WPRSS_VERSION', '4.4.4', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
@@ -213,7 +213,6 @@
     }
 
 
-
     add_filter( 'wprss_admin_pointers', 'wprss_check_tracking_notice' );
     /**
      * Сhecks the tracking option and if not set, shows a pointer with opt in and out options.
@@ -248,7 +247,6 @@
         }
         else return $pointers;
     }
-
 
 
     add_action( 'admin_enqueue_scripts', 'wprss_prepare_pointers', 1000 );
@@ -380,9 +378,9 @@
         }
 		
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		// check for plugin using plugin name
+		// Check if WordPress SEO is activate, if yes set its options for hiding the metaboxes on the wprss_feed and wprss_feed_item screens
 		if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
-			$wpseo_titles = get_option('wpseo_titles', array());
+			$wpseo_titles = get_option( 'wpseo_titles', array() );
 			if ( isset( $wpseo_titles['hideeditbox-wprss_feed'] ) ) {
 				$wpseo_titles['hideeditbox-wprss_feed'] = TRUE;
 				$wpseo_titles['hideeditbox-wprss_feed_item'] = TRUE;
@@ -398,7 +396,7 @@
      * @since 1.0
      */           
     function wprss_deactivate() {
-        // on deactivation remove the cron job 
+        // On deactivation remove the cron job 
         if ( wp_next_scheduled( 'wprss_fetch_all_feeds_hook' ) ) {
             wp_clear_scheduled_hook( 'wprss_fetch_all_feeds_hook' );
         }
@@ -416,70 +414,6 @@
     function wprss_load_textdomain() { 
         load_plugin_textdomain( 'wprss', false, WPRSS_LANG );
     }
-    
-    
-    // PressTrends WordPress Action
-    add_action( 'admin_init', 'wprss_presstrends_plugin' );  
-    /**
-     * Track plugin usage using PressTrends
-     * 
-     * @since  3.5
-     * @return void     
-     */  
-    function wprss_presstrends_plugin() {
-        $settings = get_option( 'wprss_settings_general' );
-        if ( ! isset( $settings['tracking'] ) || $settings['tracking'] != 1 ) return;
-
-        // PressTrends Account API Key
-        $api_key = 'znggu7vk7x2ddsiigkerzsca9q22xu1j53hp';
-        $auth    = 'd8giw5yyux4noasmo8gua98n7fv2hrl11';
-        // Start of Metrics
-        global $wpdb;
-        $data = get_transient( 'presstrends_cache_data' );
-        if ( !$data || $data == '' ) {
-            $api_base = 'http://api.presstrends.io/index.php/api/pluginsites/update?auth=';
-            $url      = $api_base . $auth . '&api=' . $api_key . '';
-            $count_posts    = wp_count_posts();
-            $count_pages    = wp_count_posts( 'page' );
-            $comments_count = wp_count_comments();
-            if ( function_exists( 'wp_get_theme' ) ) {
-                $theme_data = wp_get_theme();
-                $theme_name = urlencode( $theme_data->Name );
-            } else {
-                $theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
-                $theme_name = $theme_data['Name'];
-            }
-            $plugin_name = '&';
-            foreach ( get_plugins() as $plugin_info ) {
-                $plugin_name .= $plugin_info['Name'] . '&';
-            }
-            // CHANGE __FILE__ PATH IF LOCATED OUTSIDE MAIN PLUGIN FILE
-            $plugin_data         = get_plugin_data( __FILE__ );
-            $posts_with_comments = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type='post' AND comment_count > 0" );
-            $data                = array(
-                'url'             => base64_encode(site_url()),
-                'posts'           => $count_posts->publish,
-                'pages'           => $count_pages->publish,
-                'comments'        => $comments_count->total_comments,
-                'approved'        => $comments_count->approved,
-                'spam'            => $comments_count->spam,
-                'pingbacks'       => $wpdb->get_var( "SELECT COUNT(comment_ID) FROM $wpdb->comments WHERE comment_type = 'pingback'" ),
-                'post_conversion' => ( $count_posts->publish > 0 && $posts_with_comments > 0 ) ? number_format( ( $posts_with_comments / $count_posts->publish ) * 100, 0, '.', '' ) : 0,
-                'theme_version'   => $plugin_data['Version'],
-                'theme_name'      => $theme_name,
-                'site_name'       => str_replace( ' ', '', get_bloginfo( 'name' ) ),
-                'plugins'         => count( get_option( 'active_plugins' ) ),
-                'plugin'          => urlencode( $plugin_name ),
-                'wpversion'       => get_bloginfo( 'version' ),
-            );
-            foreach ( $data as $k => $v ) {
-                $url .= '&' . $k . '=' . $v . '';
-            }
-            wp_remote_get( $url );
-            set_transient( 'presstrends_cache_data', $data, 60 * 60 * 24 );
-            }
-        }  
-
 
 
     /**
@@ -490,6 +424,7 @@
     function wprss_enable() {
         return TRUE;
     }
+
 
      /**
      * Utility filter function that returns FALSE;
@@ -514,40 +449,42 @@
 		$tzstring = get_option( 'timezone_string' );
 
 		if ( empty($tzstring) ) { 
-            $offset = (int)get_option( 'gmt_offset' );
+            $offset = ( int )get_option( 'gmt_offset' );
             $tzstring = timezone_name_from_abbr( '', $offset * 60 * 60, 1 );
 		}
 
 		return $tzstring;
 	}
     
+
     /**
      * @see http://wordpress.stackexchange.com/questions/94755/converting-timestamps-to-local-time-with-date-l18n#135049
      * @param string|null $format Format to use. Default: Wordpress date and time format.
      * @param int|null $timestamp The timestamp to localize. Default: time().
      * @return string The formatted datetime, localized and offset for local timezone.
      */
-    function wprss_local_date_i18n($timestamp = null, $format = null) {
-        $format = is_null($format) ? get_option('date_format') . ' ' . get_option('time_format') : $format;
+    function wprss_local_date_i18n( $timestamp = null, $format = null ) {
+        $format = is_null( $format ) ? get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) : $format;
         $timestamp = $timestamp ? $timestamp : time();
         
         $timezone_str = wprss_get_timezone_string() ? wprss_get_timezone_string() : 'UTC';
-        $timezone = new DateTimeZone($timezone_str);
+        $timezone = new DateTimeZone( $timezone_str );
 
         // The date in the local timezone.
-        $date = new DateTime(null, $timezone);
-        $date->setTimestamp($timestamp);
-        $date_str = $date->format('Y-m-d H:i:s');
+        $date = new DateTime( null, $timezone );
+        $date->setTimestamp( $timestamp );
+        $date_str = $date->format( 'Y-m-d H:i:s' );
         
         // Pretend the local date is UTC to get the timestamp
         // to pass to date_i18n().
-        $utc_timezone = new DateTimeZone('UTC');
-        $utc_date = new DateTime($date_str, $utc_timezone);
+        $utc_timezone = new DateTimeZone( 'UTC' );
+        $utc_date = new DateTime( $date_str, $utc_timezone );
         $timestamp = $utc_date->getTimestamp();
 
-        return date_i18n($format, $timestamp, true);
+        return date_i18n( $format, $timestamp, true );
     }
     
+
     /**
      * Gets an internationalized and localized datetime string, defaulting
      * to WP RSS format.
@@ -557,8 +494,8 @@
      * @param int|null $timestamp The timestamp to localize. Default: time().
      * @return string The formatted datetime, localized and offset for local timezone.
      */
-    function wprss_date_i18n($timestamp = null, $format = null) {
-        $format = is_null($format) ? wprss_get_general_setting('date_format') : $format;
+    function wprss_date_i18n( $timestamp = null, $format = null ) {
+        $format = is_null( $format ) ? wprss_get_general_setting( 'date_format' ) : $format;
         
-        return wprss_local_date_i18n($timestamp, $format);
+        return wprss_local_date_i18n( $timestamp, $format );
     }
