@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 4.5
+    Version: 4.5.1
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,7 +29,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   4.5
+     * @version   4.5.1
      * @since     1.0
      * @author    Jean Galea <info@wprssaggregator.com>
      * @copyright Copyright (c) 2012-2014, Jean Galea
@@ -43,7 +43,7 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '4.5', true );
+        define( 'WPRSS_VERSION', '4.5.1', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
@@ -474,15 +474,21 @@
         $timezone = new DateTimeZone( $timezone_str );
 
         // The date in the local timezone.
-        $date = new DateTime( null, $timezone );
-        $date->setTimestamp( $timestamp );
+		$date = new DateTime( null, $timezone );
+		if ( version_compare(PHP_VERSION, '5.3', '>=') ) {
+			$date->setTimestamp( $timestamp );
+		} else {
+			$datetime = getdate( intval($timestamp) );
+			$date->setDate( $datetime['year'] , $datetime['mon'] , $datetime['mday'] );
+			$date->setTime( $datetime['hours'] , $datetime['minutes'] , $datetime['seconds'] );
+		}
         $date_str = $date->format( 'Y-m-d H:i:s' );
         
         // Pretend the local date is UTC to get the timestamp
         // to pass to date_i18n().
         $utc_timezone = new DateTimeZone( 'UTC' );
         $utc_date = new DateTime( $date_str, $utc_timezone );
-        $timestamp = $utc_date->getTimestamp();
+        $timestamp = intval( $utc_date->format('U') );
 
         return date_i18n( $format, $timestamp, true );
     }
