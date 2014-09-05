@@ -2,7 +2,7 @@
     /*
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
-    Description: Imports and aggregates multiple RSS Feeds using SimplePie
+    Description: The no.1 RSS feed importer for WordPress. Premium add-ons available for more functionality.
     Version: 4.5.1
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
