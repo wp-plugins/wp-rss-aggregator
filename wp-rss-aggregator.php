@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 4.6
+    Version: 4.6.1
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,7 +29,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   4.6
+     * @version   4.6.1
      * @since     1.0
      * @author    Jean Galea <info@wprssaggregator.com>
      * @copyright Copyright (c) 2012-2014, Jean Galea
@@ -43,7 +43,7 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '4.6', true );
+        define( 'WPRSS_VERSION', '4.6.1', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
@@ -248,15 +248,15 @@
 
                     'target'            =>  '#wpadminbar',
                     'options'           =>  array(
-                        'content'           =>  '<h3>' . __( 'Help improve WP RSS Aggregator', 'wprss' ) . '</h3>' . '<p>' . __( 'You\'ve just installed WP RSS Aggregator. Please helps us improve it by allowing us to gather anonymous usage stats so we know which configurations, plugins and themes to test with.', 'wprss' ) . '</p>',
+                        'content'           =>  '<h3>' . __( 'Help improve WP RSS Aggregator', WPRSS_TEXT_DOMAIN ) . '</h3>' . '<p>' . __( 'You\'ve just installed WP RSS Aggregator. Please helps us improve it by allowing us to gather anonymous usage stats so we know which configurations, plugins and themes to test with.', WPRSS_TEXT_DOMAIN ) . '</p>',
                         'position'          =>  array(
                             'edge'              =>  'top',
                             'align'             =>  'center',
                         ),
                         'active'            =>  TRUE,
                         'btns'              =>  array(
-                            'wprss-tracking-opt-out'    =>  __( 'Do not allow tracking', 'wprss' ),
-                            'wprss-tracking-opt-in'    =>  __( 'Allow tracking', 'wprss' ),
+                            'wprss-tracking-opt-out'    =>  __( 'Do not allow tracking', WPRSS_TEXT_DOMAIN ),
+                            'wprss-tracking-opt-in'    =>  __( 'Allow tracking', WPRSS_TEXT_DOMAIN ),
                         )
                     )
                 )
@@ -442,7 +442,7 @@
      * @return void     
      */  
     function wprss_load_textdomain() { 
-        load_plugin_textdomain( 'wprss', false, WPRSS_LANG );
+        load_plugin_textdomain( WPRSS_TEXT_DOMAIN, false, WPRSS_LANG );
     }
 
 
