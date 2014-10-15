@@ -3,7 +3,7 @@
     Plugin Name: WP RSS Aggregator
     Plugin URI: http://www.wprssaggregator.com
     Description: Imports and aggregates multiple RSS Feeds using SimplePie
-    Version: 4.6.1
+    Version: 4.6.2
     Author: Jean Galea
     Author URI: http://www.wprssaggregator.com
     License: GPLv2
@@ -29,7 +29,7 @@
 
     /**
      * @package   WPRSSAggregator
-     * @version   4.6.1
+     * @version   4.6.2
      * @since     1.0
      * @author    Jean Galea <info@wprssaggregator.com>
      * @copyright Copyright (c) 2012-2014, Jean Galea
@@ -43,7 +43,7 @@
 
     // Set the version number of the plugin. 
     if( !defined( 'WPRSS_VERSION' ) )
-        define( 'WPRSS_VERSION', '4.6.1', true );
+        define( 'WPRSS_VERSION', '4.6.2', true );
 
     // Set the database version number of the plugin. 
     if( !defined( 'WPRSS_DB_VERSION' ) )
@@ -160,16 +160,7 @@
     require_once ( WPRSS_INC . 'opml-importer.php' );
 
     /* Load the admin debugging page file */
-    require_once ( WPRSS_INC . 'admin-debugging.php' );     
-
-    /* Load the admin help file */
-    require_once ( WPRSS_INC . 'admin-help.php' );
-
-    /* Load the admin metaboxes help file */
-    require_once ( WPRSS_INC . 'admin-help-metaboxes.php' );
-    
-    /* Load the admin settings help file */
-    require_once ( WPRSS_INC . 'admin-help-settings.php' );
+    require_once ( WPRSS_INC . 'admin-debugging.php' );
     
     /* Load the addons page file */
     require_once ( WPRSS_INC . 'admin-addons.php' );   
@@ -209,6 +200,18 @@
 
     // Load the logging functions file
     require_once ( WPRSS_INC . 'admin-log.php' );
+	
+	if ( !defined( 'WPRSS_LOG_LEVEL' ) )
+		define( 'WPRSS_LOG_LEVEL', WPRSS_LOG_LEVEL_ERROR );
+
+    /* Load the admin help file */
+    require_once ( WPRSS_INC . 'admin-help.php' );
+
+    /* Load the admin metaboxes help file */
+    require_once ( WPRSS_INC . 'admin-help-metaboxes.php' );
+    
+    /* Load the admin settings help file */
+    require_once ( WPRSS_INC . 'admin-help-settings.php' );
 
     
     register_activation_hook( __FILE__ , 'wprss_activate' );
