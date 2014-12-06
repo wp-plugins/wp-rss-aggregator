@@ -1,4 +1,7 @@
 <?php
+
+	define( 'WPRSS_TRANSIENT_NAME_IS_REIMPORTING', 'is_reimporting' );
+
     /**
      * Feed processing related functions
      *
@@ -228,7 +231,7 @@
      */
     function wprss_update_feed_meta( $meta_id, $post_id, $meta_key, $meta_value ) {
         $post = get_post( $post_id );
-        if ( $post->post_status === 'publish' && $post->post_type === 'wprss_feed' ) {
+        if ( $post !== NULL && $post->post_status === 'publish' && $post->post_type === 'wprss_feed' ) {
             if ( $meta_key === 'wprss_url' )
                 wprss_change_fb_url( $post_id, $meta_value );
         }
@@ -302,6 +305,7 @@
      * @since 3.0
      */
     function wprss_delete_all_feed_items() {
+		wprss_log( sprintf( 'Deleting all feed items...'), __FUNCTION__, WPRSS_LOG_LEVEL_SYSTEM );
         $args = array(
                 'post_type'      => 'wprss_feed_item',
                 'cache_results'  => false,   // Disable caching, used for one-off queries
@@ -310,15 +314,36 @@
                 'posts_per_page' => -1,
         );
 
-        //$feed_items = new WP_Query( $args );
-
         $feed_item_ids = get_posts( $args );
         foreach( $feed_item_ids as $feed_item_id )  {
                 $purge = wp_delete_post( $feed_item_id, true ); // delete the feed item, skipping trash
         }
         wp_reset_postdata();
+		wprss_log( sprintf( 'All feed items deleted: %1$d', count($feed_item_ids) ), __FUNCTION__, WPRSS_LOG_LEVEL_INFO );
+		do_action('wprss_delete_all_feed_items_after', $feed_item_ids);
     }
 
+
+    /**
+     * Marks the feed source as 'updating' (importing).
+     *
+     * @since 4.6.6
+     * @return int The time value set in the 'updating' meta field
+     */
+    function wprss_flag_feed_as_updating( $feed_ID ) {
+        update_post_meta( $feed_ID, 'wprss_feed_is_updating', $start_time = time() );
+        return $start_time;
+    }
+
+    /**
+     * Marks the feed source as 'idle' (not importing).
+     *
+     * @since 4.6.6
+     */
+    function wprss_flag_feed_as_idle( $feed_ID ) {
+        delete_post_meta( $feed_ID, 'wprss_feed_is_updating' );
+    }
+    
 
 	/**
      * Returns whether or not the feed source is updating.
@@ -328,19 +353,39 @@
      *
      */
     function wprss_is_feed_source_updating( $id ) {
+        // Get the 'updating' meta field
         $is_updating_meta = get_post_meta( $id, 'wprss_feed_is_updating', TRUE );
-
+        
+        // Check if the feed has the 'updating' meta field set
         if ( $is_updating_meta === '' ) {
+            // If not, then the feed is not updating
             return FALSE;
         }
-		
-		$diff = time() - $is_updating_meta;
-		
-		if ( $diff > 30 ) {
-			delete_post_meta( $id, 'wprss_feed_is_updating' );
+
+        // Get the limit used for the feed
+        $limit = get_post_meta( $id, 'wprss_limit', true );
+        if ( $limit === '' || intval( $limit ) <= 0 ) {
+            $global_limit = wprss_get_general_setting('limit_feed_items_imported');
+            $limit = ( $global_limit === '' || intval( $global_limit ) <= 0 ) ? NULL : $global_limit;
+        }
+
+		// Calculate the allowed maximum time, based on the maximum number of items allowed to be
+        // imported from this source.
+        // If no limit is used, 60s (1min) is used.
+        $single_item_time_limit = wprss_get_item_import_time_limit();
+		$allowed_time = $limit === NULL ? 60 : $single_item_time_limit * intval( $limit );
+
+        // Calculate how many seconds have passed since the feed last signalled that it is updating
+        $diff = time() - $is_updating_meta;
+
+        // If the difference is greater than the allowed maximum amount of time, mark the feed as idle.
+		if ( $diff > $allowed_time ) {
+			wprss_flag_feed_as_idle( $id );
+            // Feed is not updating
 			return FALSE;
 		}
 
+        // Feed is updating
 		return TRUE;
     }
 
@@ -567,8 +612,20 @@
      */
     function wprss_feed_reset() {
         wp_schedule_single_event( time(), 'wprss_delete_all_feed_items_hook' );
-        wprss_fetch_insert_all_feed_items( TRUE );
+		set_transient( WPRSS_TRANSIENT_NAME_IS_REIMPORTING, true );
     }
+	
+	
+	
+	function wprss_schedule_reimport_all($deleted_ids) {
+		if( !get_transient( WPRSS_TRANSIENT_NAME_IS_REIMPORTING ) )
+			return;
+		
+		wprss_log( 'Re-import scheduled...', __FUNCTION__, WPRSS_LOG_LEVEL_SYSTEM);
+		delete_transient( WPRSS_TRANSIENT_NAME_IS_REIMPORTING );
+		wprss_fetch_insert_all_feed_items( TRUE );
+	}
+	add_action('wprss_delete_all_feed_items_after', 'wprss_schedule_reimport_all');
 
 
     /**
