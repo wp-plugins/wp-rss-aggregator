@@ -80,10 +80,10 @@
 
 			<!-- TAB WRAPPER -->
 			<h2 class="nav-tab-wrapper">
-				<a class="nav-tab <?php if ( $tab === null ) echo 'nav-tab-active'; ?>"
+				<!--<a class="nav-tab <?php if ( $tab === null ) echo 'nav-tab-active'; ?>"
 					href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wprss-welcome' ), 'index.php' ) ) ); ?>">
 					<?php _e( "What's New?", WPRSS_TEXT_DOMAIN ) ?>
-				</a>
+				</a>-->
 
 				<!-- SHOW ALL TABS -->
 				<?php foreach ($tabs as $slug => $title) : ?>
@@ -106,7 +106,7 @@
 					default: ?>
 		 					<div class="changelog">
 
-								<h2 class="about-headline-callout"><?php _e( 'Bulk Adding Feed Sources', WPRSS_TEXT_DOMAIN ) ?></h2>
+								<!--<h2 class="about-headline-callout"><?php _e( 'Bulk Adding Feed Sources', WPRSS_TEXT_DOMAIN ) ?></h2>
 								<div class="about-overview">
 									<img src="<?php echo WPRSS_IMG; ?>welcome-page/bulk-add.png" />
 									<?php echo wpautop( sprintf( __('The new bulk adding option saves you time by allowing you to enter your feed names and URLs all at once.
@@ -136,7 +136,7 @@
 											. "<strong>WP RSS Aggregator</strong> in the future, meaning it won't be imported from any of your feed sources."
 											. 'and added to the <strong>Blacklist</strong>.', WPRSS_TEXT_DOMAIN) ) ) ?>
 									</div>
-								</div>
+								</div>-->
 
 								<hr/>
 
@@ -151,7 +151,7 @@
 										<li><strong><a href="http://www.wprssaggregator.com/extension/wordai/" target="wprss_ai"><?php _e( 'WordAi', WPRSS_TEXT_DOMAIN ); ?></a></strong></li>
 									</ul>
 								</p>
-								<?php echo wpautop( sprintf( __('More information about add-ons can be found on our website <a href="%1$s">%2$s</a>', WPRSS_TEXT_DOMAIN), 'http://www.wprssaggregator.com', 'www.wprssaggregator.com' ) ) ?>
+								<?php echo wpautop( sprintf( __( 'More information about add-ons can be found on our website <a href="%1$s">%2$s</a>', WPRSS_TEXT_DOMAIN ), 'http://www.wprssaggregator.com', 'www.wprssaggregator.com' ) ) ?>
 
 		 						<hr/>
 
@@ -164,7 +164,7 @@
 									<?php endforeach; ?>
 		 						</ul>
 								
-		 						<?php echo wpautop( sprintf( __('Need functionality not already available in core or the add-ons? You can <a href="%1$s">suggest new features</a>!', WPRSS_TEXT_DOMAIN), 'http://www.wprssaggregator.com/feature-requests/' ) ) ?>
+		 						<?php echo wpautop( sprintf( __( 'Need functionality not already available in core or the add-ons? You can <a href="%1$s">suggest new features</a>!', WPRSS_TEXT_DOMAIN ), 'http://www.wprssaggregator.com/feature-requests/' ) ) ?>
 
 							</div>
 
