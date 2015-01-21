@@ -16,31 +16,21 @@
 
 
 // Check if the 'blacklist' GET param is set
-add_action( 'init', 'wprss_check_if_blacklist_item' );
+add_action( 'admin_init', 'wprss_check_if_blacklist_item' );
+// Checks if the transient is set to show the notice
+add_action( 'admin_init', 'wprss_check_notice_transient' );
 // Register custom post type
 add_action( 'init', 'wprss_blacklist_cpt' );
 // Add the row actions to the targetted post type
 add_filter( 'post_row_actions', 'wprss_blacklist_row_actions', 10, 1 );
 // Check if deleting a blacklist item, from the GET parameter
-add_action( 'init', 'wprss_check_if_blacklist_delete' );
+add_action( 'admin_init', 'wprss_check_if_blacklist_delete' );
 // Changes the wprss_blacklist table columns
 add_filter( 'manage_wprss_blacklist_posts_columns', 'wprss_blacklist_columns');
 // Prints the table data for each blacklist entry
 add_action( 'manage_wprss_blacklist_posts_custom_column' , 'wprss_blacklist_table_contents', 10, 2 );
 // Changes the wprss_blacklist bulk actions
 add_filter('bulk_actions-edit-wprss_blacklist','wprss_blacklist_bulk_actions', 5, 1 );
-
-
-/**
- * Returns the post type being used or blacklisting.
- * 
- * @since 4.4
- * @return string The post type being used for blacklisting.
- */
-function wprss_blacklist_post_type() {
-	// Return the post type - allow filter
-	return apply_filters( 'wprss_blacklist_post_type', 'wprss_feed_item' );
-}
 
 
 /**
@@ -71,14 +61,19 @@ function wprss_get_blacklist() {
  */
 function wprss_blacklist_item( $ID ) {
 	// Return if feed item is null
-	if ( is_null($ID) ) return;
+	if ( is_null( $ID ) ) return;
 	
 	// Get the feed item data
 	$item_title = get_the_title( $ID );
 	$item_permalink = get_post_meta( $ID, 'wprss_item_permalink', TRUE );
+	// If not an imported item, stop
+	if ( $item_permalink === '' ) {
+		wprss_log_obj( 'An item being blacklisted was ignored for not being an imported item', $ID, null, WPRSS_LOG_LEVEL_INFO );
+		return;
+	}
 	// Prepare the data for blacklisting
-	$title = apply_filters( 'wprss_blacklist_title', trim($item_title) );
-	$permalink = apply_filters( 'wprss_blacklist_permalink', trim($item_permalink) );
+	$title = apply_filters( 'wprss_blacklist_title', trim( $item_title ) );
+	$permalink = apply_filters( 'wprss_blacklist_permalink', trim( $item_permalink ) );
 	
 	// Get the blacklisted items
 	$blacklist = wprss_get_blacklist();
@@ -135,23 +130,52 @@ function wprss_check_if_blacklist_item() {
 	}
 	
 	// If the post type is not correct, 
-	if ( get_post_type($ID) !== wprss_blacklist_post_type() ) {
+	if ( get_post_meta( $ID, 'wprss_item_permalink', TRUE ) === '' || get_post_status( $ID ) !== 'trash' ) {
 		wp_die( __( 'The item you are trying to blacklist is not valid!', WPRSS_TEXT_DOMAIN ) );
 	}
 	
 	check_admin_referer( 'blacklist-item-' . $ID, 'wprss_blacklist_item' );
 	wprss_blacklist_item( $ID );
 	
+	// Get the current post type for the current page
+	$post_type = isset( $_GET['post_type'] )? $_GET['post_type'] : 'post';
 	// Check the current page, and generate the URL query string for the page
 	$paged = isset( $_GET['paged'] )? '&paged=' . $_GET['paged'] : '';
-	// Get the blacklisting post type
-	$post_type = wprss_blacklist_post_type();
+	// Set the notice transient
+	set_transient( 'wprss_item_blacklist_notice', 'true' );
 	// Refresh the page without the GET parameter
-	header( 'Location: ' . admin_url( "edit.php?post_type=$post_type" . $paged ) );
+	wp_redirect( admin_url( "edit.php?post_type=$post_type&post_status=trash" . $paged ) );
 	exit();
 }
 
 
+/**
+ * Checks if the transient for the blacklist notice is set, and shows the notice
+ * if it is set.
+ */
+function wprss_check_notice_transient() {
+	// Check if the transient exists
+	$transient = get_transient( 'wprss_item_blacklist_notice' );
+	if ( $transient !== FALSE ) {
+		// Remove the transient
+		delete_transient( 'wprss_item_blacklist_notice' );
+		// Show the notice
+		add_action( 'admin_notices', 'wprss_blacklist_item_notice' );
+	}
+}
+
+/**
+ * The admin notice shown when an item is blacklisted.
+ */
+function wprss_blacklist_item_notice() {
+	?>
+	<div class="updated">
+		<p>
+			The item was deleted successfully and added to the blacklist.
+		</p>
+	</div>
+	<?php
+}
 
 
 /**
@@ -191,15 +215,20 @@ function wprss_blacklist_row_actions( $actions ) {
 	// Check the current page, and generate the URL query string for the page
 	$paged = isset( $_GET['paged'] )? '&paged=' . $_GET['paged'] : '';
 	
-	$post_type = wprss_blacklist_post_type();
 	
 	// Check the post type
-	if ( get_post_type() == $post_type && get_post_status() == 'trash' ) {
+	if ( get_post_status() == 'trash' ) {
 		// Get the Post ID
 		$ID = get_the_ID();
-		
-		$remove_url = 
 
+		// Get the permalink. If does not exist, then it is not an imported item.
+		$permalink = get_post_meta( $ID, 'wprss_item_permalink', TRUE );
+		if ( $permalink === '' ) {
+			$actions;
+		}
+
+		// The post type on the current screen
+		$post_type = get_post_type();
 		// Prepare the blacklist URL
 		$plain_url = apply_filters(
 			'wprss_blacklist_row_action_url',
