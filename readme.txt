@@ -1,11 +1,10 @@
 === WP RSS Aggregator ===
 Contributors: jeangalea, Mekku, xedin.unknown, markzahra, doytch
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X9GP6BL4BLXBJ
 Plugin URI: http://www.wprssaggregator.com
 Tags: rss, feeds, aggregation, rss to post, autoblog aggregator, rss import, feed aggregator, rss aggregator, multiple rss feeds, multi rss feeds, rss multi importer, feed import, feed import, multiple feed import, feed aggregation, rss feader, feed reader, feed to post, multiple feeds, multi feed importer, multi feed import, multi import, autoblogging, autoblogger, rss feeder, rss post importer, autoblog aggregator, autoblog, autopost, content curation, feedwordpress, wp rss multi import, hungryfeed, wp-o-matic, rss feed, rss feed to post, rss retriever, syndication
 Requires at least: 3.3
 Tested up to: 4.1
-Stable tag: 4.6.13
+Stable tag: 4.7
 License: GPLv2 or later
 The no.1 RSS feed importer for WordPress. Premium add-ons available for more functionality.
 
@@ -60,7 +59,7 @@ We also provide a [Feed Creator](http://createfeed.wprssaggregator.com) service,
 The core plugin can be seen in use on the [demo page](http://www.wprssaggregator.com/demo/).
 
 = Video Walkthrough =
-[youtube http://www.youtube.com/watch?v=5J-S2vXtQ5w]
+[youtube http://www.youtube.com/watch?v=fcENPsmJbvc]
 
 = Documentation =
 Instructions for plugin usage are available on the plugin's [documentation page](http://www.wprssaggregator.com/documentation/).
@@ -169,6 +168,15 @@ The full documentation section can be found on the [WP RSS Aggregator website](w
 
 
 == Changelog ==
+
+= 4.7 (2015-04-21) =
+* New: Optionally import only items with titles that don't already exist.
+* Enhanced: Accessing feeds over HTTPS is now possible.
+* Enhanced: Added support for multibyte strings in some places.
+* Enhanced: Increased JS compatibility with other plugins.
+* Enhanced: Increased UI support for mobile devices.
+* Fixed bug: Having no mysqli extension no longer causes an error to appear in the debug info.
+* Fixed bug: Saving an empty license key no longer results in a warning. 
 
 = 4.6.13 (2015-03-20) =
 * Fixed bug: The "Force feed" option wasn't being correctly used.
